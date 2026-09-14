@@ -1,0 +1,134 @@
+<!-- herramientas.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio de Mercado - Herramientas de Investigación</title>
+    <link rel="stylesheet" href="css/globales.css">
+    <link rel="stylesheet" href="css/pregunta.css"> 
+    <link rel="stylesheet" href="css/herramientas.css">
+</head>
+<body>
+
+    <!-- Canvas para la lluvia de copos de nieve adelante -->
+    <canvas id="canvas-red-urbana"></canvas>
+
+    <div class="marco-diapositiva-flotante">
+        
+        <!-- ENCABEZADO CENTRADO -->
+        <div class="cabecera-seccion">
+            <span style="font-weight: bold; color: var(--color-azul-acento); text-transform: uppercase; letter-spacing: 2px;">Fase 03</span>
+            <h2 class="titulo-principal-liquido">Herramientas de <span>Investigación</span></h2>
+        </div>
+
+        <p class="texto-descriptivo-metodologia">
+            Se seleccionaron las Encuestas (cuestionarios estructurados) como técnica principal de elicitación de requisitos para este estudio.
+        </p>
+
+        <!-- ESCENARIO DE INTERMITENCIA DE ESFERAS -->
+        <div class="escenario-burbujas-interactivas" id="escenario-lienzo">
+            
+            <!-- Burbuja 1 -->
+            <div class="burbuja-metodológica pos-inicio-1" id="burbuja-1" onclick="gestionarFlujoBurbujas(1)">
+                <div class="numero-burbuja">1</div>
+                <div class="label-burbuja">Enfoque</div>
+                
+                <div class="contenido-interno-datos">
+                    <h3 class="titulo-panel-metodologia">Enfoque Mixto</h3>
+                    <ul class="lista-metodologia-limpia">
+                        <li><strong>Cuantitativo:</strong> Medición objetiva de los índices de dificultad que experimentan los usuarios para arrendar inmuebles urbanos en Garzón.</li>
+                        <li><strong>Cualitativo:</strong> Comprensión profunda de los canales informales y necesidades comerciales de propietarios e inquilinos.</li>
+                        <li><strong>Tipo de Estudio:</strong> Investigativo, descriptivo y aplicado directamente como trabajo de campo local.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Burbuja 2 -->
+            <div class="burbuja-metodológica pos-inicio-2" id="burbuja-2" onclick="gestionarFlujoBurbujas(2)">
+                <div class="numero-burbuja">2</div>
+                <div class="label-burbuja">Muestra</div>
+                
+                <div class="contenido-interno-datos">
+                    <h3 class="titulo-panel-metodologia">Población Objeto</h3>
+                    <ul class="lista-metodologia-limpia">
+                        <li><strong>Muestra Representativa:</strong> 24 usuarios reales y activos dentro del mercado inmobiliario del municipio.</li>
+                        <li><strong>Segmento Inquilinos:</strong> 12 personas naturales en proceso de búsqueda o habitando actualmente inmuebles bajo arriendo.</li>
+                        <li><strong>Segmento Propietarios:</strong> 12 arrendadores y dueños directos de viviendas ubicadas en el casco urbano.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Burbuja 3 -->
+            <div class="burbuja-metodológica pos-inicio-3" id="burbuja-3" onclick="gestionarFlujoBurbujas(3)">
+                <div class="numero-burbuja">3</div>
+                <div class="label-burbuja">Canal</div>
+                
+                <div class="contenido-interno-datos">
+                    <h3 class="titulo-panel-metodologia">Instrumentos Aplicados</h3>
+                    <ul class="lista-metodologia-limpia">
+                        <li><strong>Canal Digital:</strong> Dos cuestionarios estructurados distribuidos mediante la plataforma Google Forms.</li>
+                        <li><strong>Estructura Técnica:</strong> 13 preguntas clave con enfoque en variables críticas por cada instrumento aplicado.</li>
+                        <li><strong>Métricas Clave:</strong> Medios de difusión, tiempos promedio de vacancia, disposición tecnológica y estafas.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-estilizado">
+            <div>ADSO - SENA 2026</div>
+            <div style="font-weight: bold; color: var(--color-azul-acento);">Metodología de Elicitación</div>
+        </div>
+
+    </div>
+
+    <script src="js/navegacion.js"></script>
+    <script src="js/particulas-nieve.js"></script>
+
+    <script>
+        // MOTOR DE DESPLAZAMIENTO MAGNÉTICO INTERACTIVO (EFECTO ESTALLIDO EN EL CENTRO)
+        function gestionarFlujoBurbujas(idAbierta) {
+            const b1 = document.getElementById('burbuja-1');
+            const b2 = document.getElementById('burbuja-2');
+            const b3 = document.getElementById('burbuja-3');
+            
+            const objetivo = document.getElementById(`burbuja-${idAbierta}`);
+            
+            // Si el usuario da clic sobre la que ya está abierta en el centro, todo regresa al inicio simétrico
+            if (objetivo.classList.contains('activa-centro')) {
+                limpiarClasesFisicas();
+                return;
+            }
+
+            // Limpieza absoluta previa de estados
+            limpiarClasesFisicas();
+
+            // Ejecución estricta del algoritmo de desplazamiento a los extremos según la burbuja elegida
+            objetivo.classList.add('activa-centro');
+
+            if (idAbierta === 1) {
+                b2.classList.add('extremo-izquierdo');
+                b3.classList.add('extremo-derecho');
+            } else if (idAbierta === 2) {
+                b1.classList.add('extremo-izquierdo');
+                b3.classList.add('extremo-derecho');
+            } else if (idAbierta === 3) {
+                b1.classList.add('extremo-izquierdo');
+                b2.classList.add('extremo-derecho');
+            }
+        }
+
+        function limpiarClasesFisicas() {
+            for (let i = 1; i <= 3; i++) {
+                const b = document.getElementById(`burbuja-${i}`);
+                b.classList.remove('activa-centro', 'extremo-izquierdo', 'extremo-derecho');
+            }
+        }
+    </script>
+        <!-- ENLAZAR AL FINAL DE herramientas.html -->
+    <script src="js/navegacion.js"></script>
+    <script src="js/particulas.nieve.js"></script>
+    <script src="js/burbujas-fondo.js"></script> <!-- NUEVO: Esferas de luz intermitentes en el fondo -->
+</body>
+</html>

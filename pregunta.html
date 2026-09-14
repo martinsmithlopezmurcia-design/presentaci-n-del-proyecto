@@ -1,0 +1,84 @@
+<!-- pregunta.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio de Mercado - Formulación del Problema</title>
+    <link rel="stylesheet" href="css/globales.css">
+    <link rel="stylesheet" href="css/pregunta.css">
+</head>
+<body>
+
+    <!-- CORRECCIÓN DE RAÍZ: El canvas se ubica afuera de todo, suelto en el body.
+         Esto garantiza de forma estricta que flote al frente por sobre el marco blanco. -->
+    <canvas id="canvas-red-urbana"></canvas>
+
+    <!-- MARCO CONTENEDOR PRINCIPAL INTERMEDIO -->
+    <div class="marco-diapositiva-flotante">
+        
+        <!-- LAYOUT ASIMÉTRICO TOTALMENTE CENTRADO VERTICALMENTE -->
+        <div class="layout-distribucion-total">
+            
+            <!-- COLUMNA IZQUIERDA: TITULO SELECTIVO Y PREGUNTA COMPACTA CON DISEÑO -->
+            <div class="zona-izquierda-contenido">
+                <span class="subtitulo-fase">Fase 01</span>
+                <h2 class="titulo-principal-liquido">Formulación<br><span>del Problema</span></h2>
+                
+                <div class="contenedor-pregunta-sobresaliente">
+                    <p>
+                        ¿Con qué facilidad pueden las personas buscar y encontrar arriendos que se ajusten a sus necesidades y qué tan sencillo es para los propietarios publicar su información en Garzón, Huila?
+                    </p>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: CENTRADA CON ICONOS Y TÍTULO MULTICOLOR AL DESPLEGAR -->
+            <div class="zona-derecha-bloques">
+                
+                <!-- Bloque 1: Inquilino -->
+                <div class="bloque-revelable-vacio" onclick="activarExpansion(this)">
+                    <div class="contenido-bloque-oculto">
+                        <div class="cabecera-bloque-titulo">
+                            <svg class="icono-svg-bloque" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                            <h3 class="titulo-revelado-multicolor">Perspectiva del Inquilino</h3>
+                        </div>
+                        <ul class="lista-datos-limpia">
+                            <li>Dificultad crítica para contrastar ofertas objetivamente.</li>
+                            <li>Falta de canales especializados y unificados en el municipio.</li>
+                            <li>Exposición a sobrecostos y riesgos de desinformación.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Bloque 2: Propietario -->
+                <div class="bloque-revelable-vacio" onclick="activarExpansion(this)">
+                    <div class="contenido-bloque-oculto">
+                        <div class="cabecera-bloque-titulo">
+                            <svg class="icono-svg-bloque" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                            <h3 class="titulo-revelado-multicolor">Perspectiva del Propietario</h3>
+                        </div>
+                        <ul class="lista-datos-limpia">
+                            <li>Dependencia absoluta del letrero físico y el "boca a boca".</li>
+                            <li>Tiempos de vacancia prolongados por baja visibilidad.</li>
+                            <li>Información comercial dispersa y no estandarizada.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PIE DE PÁGINA INTERNO DEL MARCO -->
+        <div class="footer-estilizado">
+            <div>ADSO - SENA 2026</div>
+            <div style="font-weight: bold; color: var(--color-azul-acento);">Pregunta de Investigación</div>
+        </div>
+
+    </div>
+
+    <!-- Motores de la barra de navegación y control gráfico -->
+    <script src="js/navegacion.js"></script>
+    <script src="js/animacion-pregunta.js"></script>
+</body>
+</html>

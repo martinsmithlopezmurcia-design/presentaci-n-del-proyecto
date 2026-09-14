@@ -1,0 +1,108 @@
+/* css/globales.css */
+
+:root {
+    --color-fondo: #ffffff;          /* Blanco puro */
+    --color-fondo-suave: #f1f5f9;    /* Gris muy claro para contrastes */
+    --color-azul-principal: #0f172a; /* Azul marino profundo para títulos */
+    --color-azul-acento: #2563eb;    /* Azul brillante para elementos destacados */
+    --color-texto: #334155;          /* Gris oscuro para lectura cómoda */
+    --color-texto-mutado: #64748b;   /* Gris medio para etiquetas */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: 'Times New Roman', Times, serif; /* Tipografía clásica solicitada */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Capa de partículas de fondo */
+#particulas-contenedor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* No interfiere con los clics */
+    z-index: 1;
+}
+
+.particula {
+    position: absolute;
+    background-color: rgba(37, 99, 235, 0.15); /* Azul muy traslúcido */
+    border-radius: 50%;
+    animation: flotar 8s infinite linear;
+}
+
+@keyframes flotar {
+    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* Contenedor principal estilo layout asimétrico */
+.diapositiva-estructura {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    z-index: 10;
+}
+
+/* Botones flotantes del Carrusel (Estilo redondeado, traslúcido y minimalista) */
+.controles-navegacion {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Deja pasar los clics al contenido central */
+    z-index: 1000;
+}
+
+.btn-nav {
+    pointer-events: auto; /* Reactiva los clics individuales */
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    color: var(--color-azul-principal);
+    width: 55px;
+    height: 55px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+/* Efecto solicitado: Brillo y expansión al posar el mouse */
+.btn-nav:hover {
+    background-color: var(--color-azul-acento);
+    color: #ffffff;
+    border-color: var(--color-azul-acento);
+    transform: scale(1.15);
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.6);
+}
+
+/* Forzar posición unitaria por si falta un botón */
+.btn-siguiente {
+    margin-left: auto;
+}

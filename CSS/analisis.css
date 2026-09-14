@@ -1,0 +1,304 @@
+/* css/analisis.css */
+
+:root {
+    --color-azul-principal: #0f172a;
+    --color-azul-acento: #2563eb;
+    --color-texto-mutado: #64748b;
+}
+
+/* CENTRADO MATEMÁTICO ABSOLUTO DE LA DIAPOSITIVA EN TU MONITOR */
+body {
+    background: #e2e8f0;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex; /* Activa el entorno flexible de centrado */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* EL CANVAS SE QUEDA ABAJO (Z-INDEX: 1) PARA NO BLOQUEAR LOS EVENTOS DEL RATÓN */
+#canvas-red-urbana {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    display: block;
+}
+
+/* MARCO CONTENEDOR PRINCIPAL BLANCO FLOTANTE (CAPA INTERMEDIA) */
+.marco-diapositiva-flotante {
+    position: relative;
+    z-index: 10;
+    width: 93vw;
+    height: 88vh;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 30px 70px -15px rgba(15, 23, 42, 0.15);
+    padding: 32px 50px 20px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* CABECERA FORMAL */
+.cabecera-seccion {
+    text-align: left;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.fase-label {
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: var(--color-azul-acento);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.titulo-principal-liquido {
+    font-size: 2.4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--color-azul-principal);
+    margin: 2px 0 0 0;
+}
+
+.titulo-principal-liquido span {
+    display: inline-block;
+    background: linear-gradient(90deg, #2563eb, #38bdf8, #2563eb);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: flujoLiquidoTexto 4s linear infinite;
+}
+
+/* LAYOUT ASIMÉTRICO DE DOS MITADES HORIZONTALES REALES (50% / 50%) */
+.layout-analisis {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    flex-grow: 1;
+    min-height: 0;
+    padding: 10px 0;
+    width: 100%;
+}
+
+/* =============================================
+   MITAD IZQUIERDA — GRÁFICO SEGURO DE MÉTRICAS
+============================================= */
+.contenedor-grafico-tecnologico {
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    padding: 24px 20px 10px 20px;
+    height: 90%; /* Ajuste para dar aire proporcional */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.titulo-grafico {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-azul-principal);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.grafico-flex-eje {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex-grow: 1;
+    border-bottom: 2px solid #cbd5e1;
+    padding-bottom: 5px;
+    width: 100%;
+    min-height: 0;
+    margin-bottom: 30px; /* Evita colisiones de textos inferiores */
+}
+
+.columna-barra-viva {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 22%;
+    height: 100%;
+    position: relative;
+}
+
+.barra-relleno-grafica {
+    width: 38px;
+    background: linear-gradient(to top, #2563eb, #38bdf8);
+    border-radius: 6px 6px 0 0;
+    box-shadow: 0 8px 16px rgba(37, 99, 235, 0.15);
+    height: 0;
+    animation: elevacionBarra 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.barra-relleno-grafica.destacada {
+    background: linear-gradient(to top, #ea580c, #f97316);
+    box-shadow: 0 8px 16px rgba(249, 115, 22, 0.15);
+}
+
+.valor-flotante-barra {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--color-azul-principal);
+    margin-bottom: 5px;
+    opacity: 0;
+    animation: aparecerTextoMétrica 0.5s 1.2s ease-out forwards;
+}
+
+.etiqueta-eje-x {
+    position: absolute;
+    top: calc(100% + 8px);
+    font-size: 0.72rem;
+    font-weight: bold;
+    color: #64748b;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.2;
+    width: 100%;
+}
+
+/* =============================================
+   MITAD DERECHA — DISPLAY REVELABLE VERTICAL
+============================================= */
+.contenedor-scroll-vertical-hallazgos {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+}
+
+/* Las tarjetas usan opacidad y visibilidad para transiciones CSS fluidas */
+.tarjeta-hallazgo-clic {
+    position: absolute;
+    width: 82%; /* Reserva el 18% lateral para los botones */
+    left: 0;
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 16px;
+    padding: 30px 28px;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04);
+    text-align: left;
+
+    /* Estado oculto estable */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px) scale(0.97);
+    transition:
+        opacity 0.45s cubic-bezier(0.165, 0.84, 0.44, 1),
+        transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1),
+        visibility 0.45s,
+        border-color 0.3s,
+        box-shadow 0.3s;
+    pointer-events: none;
+}
+
+/* Estado activo proyectado */
+.tarjeta-hallazgo-clic.activa-vertical {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    border-color: var(--color-azul-acento);
+    box-shadow: 0 25px 50px rgba(15, 23, 42, 0.08), 0 0 25px rgba(37, 99, 235, 0.15);
+    pointer-events: auto;
+}
+
+.titulo-hallazgo {
+    font-size: 1.35rem;
+    font-weight: bold;
+    color: #f97316;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(15, 23, 42, 0.06);
+    padding-bottom: 6px;
+}
+
+.tarjeta-hallazgo-clic p {
+    font-size: 1.15rem;
+    color: #475569;
+    line-height: 1.45;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* CONTROLES VERTICALES FLOTANTES EN CAPA ALTA (Z-INDEX: 100) */
+.controles-direccionales-verticales {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 100; /* Asegura clics por encima de las capas translúcidas */
+}
+
+.btn-direccion-v {
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    color: var(--color-azul-principal);
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-direccion-v:hover {
+    background: var(--color-azul-acento);
+    color: #ffffff;
+    border-color: var(--color-azul-acento);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+}
+
+.footer-estilizado {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--color-texto-mutado);
+    text-transform: uppercase;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+    padding-top: 15px;
+    flex-shrink: 0;
+}
+
+/* KEYFRAMES */
+@keyframes elevacionBarra {
+    to { height: var(--altura-objetivo); }
+}
+
+@keyframes aparecerTextoMétrica {
+    to { opacity: 1; }
+}
+
+@keyframes flujoLiquidoTexto {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}

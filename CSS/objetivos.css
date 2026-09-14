@@ -1,0 +1,250 @@
+/* css/objetivos.css */
+
+/* CONFIGURACIÓN DEL FONDO (Copiado exactamente de la segunda imagen) */
+body {
+    background: linear-gradient(-45deg, #ffffff, #fdfdfd, #f8fafc, #f1f5f9, #eff6ff, #ffffff);
+    background-size: 400% 400%;
+    animation: movimientoFondoLiquido 14s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    perspective: 1400px; /* Universo 3D activado para el carrusel de la derecha */
+}
+
+/* MARCO CONTENEDOR FLOTANTE PREMIUM (Imagen 2) */
+.marco-diapositiva-flotante {
+    position: relative;
+    z-index: 10;
+    width: 93vw;
+    height: 88vh;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 30px 70px -15px rgba(15, 23, 42, 0.15);
+    padding: 50px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* DISTRIBUCIÓN ASIMÉTRICA REAL (Izquierda fija / Derecha en Órbita 3D) */
+.layout-distribucion-total {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 50px;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* --- LADO IZQUIERDO: TEXTOS FIJOS (Imagen 3) --- */
+.zona-izquierda-contenido {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.subtitulo-fase {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: var(--color-azul-acento);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+/* TÍTULO CON CAMBIO DE COLOR SELECTIVO EN LAS ÚLTIMAS PALABRAS (Imagen 3) */
+.titulo-principal-liquido {
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    color: var(--color-azul-principal);
+    filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.08));
+}
+
+.titulo-principal-liquido span {
+    display: inline-block;
+    background: linear-gradient(90deg, #2563eb, #38bdf8, #2563eb);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: flujoLiquidoTexto 4s linear infinite;
+}
+
+/* CONTENEDOR DEL OBJETIVO GENERAL (Diseño elegante y sobrio a juego con el proyecto) */
+/* REEMPLAZAR ESTA REGLA EXACTA EN css/objetivos.css */
+.contenedor-objetivo-general {
+    background: #f8fafc;
+    border-left: 6px solid var(--color-azul-acento);
+    border-radius: 4px 16px 16px 4px;
+    padding: 20px 25px; /* Reducción estricta de tamaño interno para evitar desbordes */
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.04), 0 0 15px rgba(37, 99, 235, 0.02);
+    border-top: 1px solid rgba(37, 99, 235, 0.03);
+    border-right: 1px solid rgba(37, 99, 235, 0.03);
+    border-bottom: 1px solid rgba(37, 99, 235, 0.03);
+    transition: all 0.4s ease;
+    margin-top: 10px;
+}
+
+.contenedor-objetivo-general p {
+    font-size: 1.35rem; /* Fuente más estilizada y compacta para que no se salga */
+    font-weight: bold;
+    color: var(--color-azul-principal);
+    line-height: 1.4;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.contenedor-objetivo-general p {
+    font-size: 1.65rem;
+    font-weight: bold;
+    color: var(--color-azul-principal);
+    line-height: 1.45;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.contenedor-objetivo-general:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.1), 0 0 25px rgba(37, 99, 235, 0.05);
+}
+
+/* --- LADO DERECHO: TEATRO ORBITAL 3D (Imagen 1) --- */
+.zona-derecha-escenario-3d {
+    position: relative;
+    width: 100%;
+    height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+/* CONTENEDOR DEL ANILLO GIRATORIO INDEPENDIENTE */
+.contenedor-orbita-especificos {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* TARJETAS DE CRISTAL FUTURISTAS INTEGRADAS EN EL ANILLO */
+.panel-especifico-orbital {
+    position: absolute;
+    width: 320px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.92); /* Base blanca sólida semi-cristalizada */
+    border: 1px solid rgba(15, 23, 42, 0.14);
+    border-radius: 14px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.06);
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    cursor: pointer;
+}
+
+/* Distribución radial matemática en el espacio derecho */
+.panel-especifico-orbital:nth-child(1) { transform: rotateY(0deg) translateZ(280px); }
+.panel-especifico-orbital:nth-child(2) { transform: rotateY(90deg) translateZ(280px); }
+.panel-especifico-orbital:nth-child(3) { transform: rotateY(180deg) translateZ(280px); }
+.panel-especifico-orbital:nth-child(4) { transform: rotateY(270deg) translateZ(280px); }
+
+.badge-orbita-neon {
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: #ffffff;
+    background: var(--color-azul-acento);
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    transform: translateZ(15px);
+}
+
+.texto-orbita {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #475569; /* Gris elegante e institucional */
+    line-height: 1.4;
+    text-align: left;
+    transform: translateZ(10px);
+    transition: all 0.3s ease;
+}
+
+/* EFECTO HOVER PREMIUM: SE PROYECTA AL FRENTE E ILUMINA SU CONTORNO EN AZUL */
+.panel-especifico-orbital:hover {
+    background: #ffffff;
+    border-color: var(--color-azul-acento);
+    /* El panel salta hacia adelante con respecto a los otros en el eje Z */
+    transform: scale(1.05) translateZ(320px) !important; 
+    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.12), 0 0 25px rgba(37, 99, 235, 0.25);
+    z-index: 100;
+}
+
+.panel-especifico-orbital:hover .texto-orbita {
+    color: var(--color-azul-acento);
+}
+
+/* CONTROLES MINIATURA DE ROTACIÓN BAJO EL ANILLO */
+.controles-giro-3d {
+    position: absolute;
+    bottom: -10px;
+    display: flex;
+    gap: 15px;
+    z-index: 1000;
+}
+
+.btn-giro-3d {
+    background: rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    color: var(--color-azul-principal);
+    padding: 8px 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-giro-3d:hover {
+    background: var(--color-azul-acento);
+    color: #ffffff;
+    border-color: var(--color-azul-acento);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+.footer-estilizado {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--color-texto-mutado);
+    text-transform: uppercase;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+    padding-top: 20px;
+}
+
+/* ANIMACIONES COMPLEJAS */
+@keyframes movimientoFondoLiquido {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes flujoLiquidoTexto {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}

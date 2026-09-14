@@ -1,0 +1,158 @@
+<!-- analisis.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio de Mercado - Análisis de Datos</title>
+    <!-- Enlaces limpios e independientes a los estilos -->
+    <link rel="stylesheet" href="css/globales.css">
+    <link rel="stylesheet" href="css/analisis.css">
+</head>
+<body>
+
+    <!-- Canvas para la lluvia de copos de nieve azul claro que flota adelante -->
+    <canvas id="canvas-red-urbana"></canvas>
+
+    <!-- MARCO CONTENEDOR PRINCIPAL FLOTANTE PERFECTAMENTE CENTRADO EN EL BODY -->
+    <div class="marco-diapositiva-flotante">
+        
+        <!-- ENCABEZADO COMPLETAMENTE LIMPIO -->
+        <div class="cabecera-seccion">
+            <span class="fase-label">Fase 04</span>
+            <h2 class="titulo-principal-liquido">Análisis e Interpretación de <span>Datos</span></h2>
+        </div>
+
+        <!-- LAYOUT ASIMÉTRICO DE DOS MITADES HORIZONTALES (50% / 50%) -->
+        <div class="layout-analisis">
+            
+            <!-- MITAD IZQUIERDA: GRÁFICO DE MÉTRICAS FIJO -->
+            <div class="contenedor-grafico-tecnologico">
+                <h3 class="titulo-grafico">Métricas Críticas Cruzadas (%)</h3>
+                
+                <div class="grafico-flex-eje">
+                    <!-- Barra 1 -->
+                    <div class="columna-barra-viva">
+                        <div class="valor-flotante-barra">68.4%</div>
+                        <div class="barra-relleno-grafica" style="--altura-objetivo: 68.4%;"></div>
+                        <div class="etiqueta-eje-x">Dificultad<br>Inquilinos</div>
+                    </div>
+                    <!-- Barra 2 -->
+                    <div class="columna-barra-viva">
+                        <div class="valor-flotante-barra">75.0%</div>
+                        <div class="barra-relleno-grafica" style="--altura-objetivo: 75%;"></div>
+                        <div class="etiqueta-eje-x">Boca a Boca</div>
+                    </div>
+                    <!-- Barra 3 -->
+                    <div class="columna-barra-viva">
+                        <div class="valor-flotante-barra">58.3%</div>
+                        <div class="barra-relleno-grafica" style="--altura-objetivo: 58.3%;"></div>
+                        <div class="etiqueta-eje-x">Desgaste Tiempo</div>
+                    </div>
+                    <!-- Barra 4 -->
+                    <div class="columna-barra-viva">
+                        <div class="valor-flotante-barra">100%</div>
+                        <div class="barra-relleno-grafica destacada" style="--altura-objetivo: 100%;"></div>
+                        <div class="etiqueta-eje-x">Aceptación App/Web</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MITAD DERECHA: PANTALLA REVELABLE CON CONTROL POR BOTONES FIJOS -->
+            <div class="contenedor-scroll-vertical-hallazgos">
+                
+                <!-- Hallazgo 1 (Visible inicialmente) -->
+                <div class="tarjeta-hallazgo-clic activa-vertical" id="hallazgo-1">
+                    <h4 class="titulo-hallazgo">El Cruce Crítico</h4>
+                    <p>
+                        Mientras el <strong>68.4% de los inquilinos</strong> reporta una alta dificultad para contrastar ofertas objetivas, el mercado se estanca en métodos tradicionales obsoletos.
+                    </p>
+                </div>
+
+                <!-- Hallazgo 2 -->
+                <div class="tarjeta-hallazgo-clic" id="hallazgo-2">
+                    <h4 class="titulo-hallazgo">Informalidad y Vacancia</h4>
+                    <p>
+                        El <strong>75% de los propietarios</strong> depende del letrero físico o conocidos. Esto causa que los inmuebles pasen meses vacíos por falta de canales con visibilidad unificada.
+                    </p>
+                </div>
+
+                <!-- Hallazgo 3 -->
+                <div class="tarjeta-hallazgo-clic" id="hallazgo-3">
+                    <h4 class="titulo-hallazgo">Justificación del Software</h4>
+                    <p>
+                        Existe un <strong>100% de aceptación mutua</strong> para adoptar una plataforma digital. Esto respalda técnicamente el desarrollo del aplicativo para centralizar la oferta de Garzón.
+                    </p>
+                </div>
+
+                <!-- CONTROLES VERTICALES FIJOS (Solución definitiva anti-bloqueos de mouse) -->
+                <div class="controles-direccionales-verticales">
+                    <button class="btn-direccion-v" onclick="subirTarjetaVertical()">▲</button>
+                    <button class="btn-direccion-v" onclick="bajarTarjetaVertical()">▼</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PIE DE PÁGINA INTERNO DEL MARCO -->
+        <div class="footer-estilizado">
+            <div>ADSO - SENA 2026</div>
+            <div style="font-weight: bold; color: var(--color-azul-acento);">Análisis de Resultados</div>
+        </div>
+
+    </div>
+
+    <!-- Motores JavaScript externos compartidos de control global -->
+    <script src="js/navegacion.js"></script>
+    <script src="js/particulas-nieve.js"></script>
+    <script src="js/burbujas-fondo.js"></script>
+
+    <script>
+        // MOTOR DE NAVEGACIÓN MANUAL VERTICAL (100% SEGURO Y COMPATIBLE)
+        let indiceActual = 1;
+        const totalTarjetas = 3;
+
+        function bajarTarjetaVertical() {
+            if (indiceActual < totalTarjetas) {
+                ejecutarCambioTransicion(indiceActual + 1);
+            }
+        }
+
+        function subirTarjetaVertical() {
+            if (indiceActual > 1) {
+                ejecutarCambioTransicion(indiceActual - 1);
+            }
+        }
+
+        function ejecutarCambioTransicion(nuevoIndice) {
+            // Desvanecer la tarjeta activa anterior aplicando la clase CSS
+            const tarjetaVieja = document.getElementById(`hallazgo-${indiceActual}`);
+            if (tarjetaVieja) {
+                tarjetaVieja.classList.remove('activa-vertical');
+            }
+
+            // Sincronización del retardo para permitir la disolución suave
+            setTimeout(() => {
+                indiceActual = nuevoIndice;
+                const tarjetaNueva = document.getElementById(`hallazgo-${indiceActual}`);
+                if (tarjetaNueva) {
+                    tarjetaNueva.classList.add('activa-vertical');
+                }
+            }, 100);
+        }
+
+        // Control opcional mediante las flechas de dirección física del teclado (↑ y ↓)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                subirTarjetaVertical();
+            }
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                bajarTarjetaVertical();
+            }
+        });
+    </script>
+</body>
+</html>

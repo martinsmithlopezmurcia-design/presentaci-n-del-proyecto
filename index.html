@@ -1,0 +1,92 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio de Mercado - Portada</title>
+    <!-- Inclusión estricta de hojas de estilos externas -->
+    <link rel="stylesheet" href="css/globales.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+    <!-- Contenedor dinámico de partículas que se inyectará mediante JS -->
+    <div id="particulas-letras-contenedor"></div>
+
+    <div class="diapositiva-estructura">
+        
+        <!-- MITAD IZQUIERDA: CONTENIDOS GENERALES -->
+        <div class="bloque-contenido">
+            
+            <div class="header-sena">
+                <div>ADSO 2026</div>
+                <div>|</div>
+                <div>FICHA: <span>3229944</span></div>
+            </div>
+
+            <div class="cuerpo-titulos">
+                <h1 class="titulo-principal">
+                    Estudio de mercado de <br><span>arrendamiento</span> <br>en Garzón, Huila
+                </h1>
+                <p class="descripcion-proyecto">
+                    Análisis Metodológico, Resultados y Requisitos de Software para el Mercado Inmobiliario Local.
+                </p>
+            </div>
+
+            <div class="footer-creditos">
+                <div class="grupo-meta">
+                    <h3>Autores</h3>
+                    <p>Edgar Stick López Murcia</p>
+                    <p>Martin Smith López Murcia</p>
+                </div>
+                <div class="grupo-meta">
+                    <h3>Instructor</h3>
+                    <p>Manuel Galindez</p>
+                    <p style="color: var(--color-texto-mutado); font-size: 0.9rem; margin-top: 4px;">Fecha: 14/09/2026</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MITAD DERECHA: CARRUSEL EN ÓVALO 3D AUTOMÁTICO (Unsplash) -->
+        <div class="bloque-galeria">
+            <img src="img/inmueble1.jpg" class="imagen-carrusel activa" alt="Inmueble Moderno 1">
+            <img src="img/inmueble2.webp" class="imagen-carrusel" alt="Inmueble Moderno 2">
+            <img src="img/inmueble3.avif" class="imagen-carrusel" alt="Inmueble Moderno 3">
+        </div>
+
+    </div>
+
+    <!-- Ejecución de los scripts de control -->
+    <script src="js/navegacion.js"></script>
+    <script>
+        // 1. Inyección de abundantes partículas fluidas sobre la zona izquierda (Texto)
+        const zonaLetras = document.getElementById('particulas-letras-contenedor');
+        const cantidadParticulas = 35; // Incrementado sustancialmente para dar vida
+
+        for (let i = 0; i < cantidadParticulas; i++) {
+            const p = document.createElement('div');
+            p.className = 'particula-letra';
+            // Restringidas principalmente a la mitad izquierda de la pantalla
+            p.style.left = Math.random() * 55 + "vw"; 
+            const tamano = Math.random() * 40 + 10; // Partículas más grandes tipo esferas de luz difuminadas
+            p.style.width = tamano + "px";
+            p.style.height = tamano + "px";
+            p.style.animationDelay = Math.random() * 6 + "s";
+            p.style.animationDuration = Math.random() * 4 + 6 + "s";
+            zonaLetras.appendChild(p);
+        }
+
+        // 2. Control de cambio de imágenes automático (Efecto Disolución)
+        const imagenes = document.querySelectorAll('.imagen-carrusel');
+        let itemActual = 0;
+
+        setInterval(() => {
+            imagenes[itemActual].classList.remove('activa');
+            itemActual = (itemActual + 1) % imagenes.length;
+            imagenes[itemActual].classList.add('activa');
+        }, 4500); // Rotación fluida cada 4.5 segundos
+    </script>
+</body>
+</html>

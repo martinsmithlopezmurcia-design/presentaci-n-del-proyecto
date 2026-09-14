@@ -1,0 +1,255 @@
+/* css/herramientas.css */
+
+:root {
+    --color-azul-principal: #0f172a;
+    --color-azul-acento: #2563eb;
+    --color-texto-mutado: #64748b;
+}
+
+/* 1. CORRECCIÓN: CENTRADO ABSOLUTO DEL BODY EN LA PANTALLA DEL MONITOR */
+body {
+    background: #e2e8f0;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex; /* Activado para centrado vertical y horizontal */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 2. CORRECCIÓN: EL CANVAS SE QUEDA EN EL FRENTE FLOTANTE SIN DESPLAZAR EL LAYOUT */
+#canvas-red-urbana {
+    position: fixed !important; /* Fixed absoluto para que no empuje el marco blanco */
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+    pointer-events: none !important;
+    display: block !important;
+}
+
+/* MARCO CONTENEDOR PRINCIPAL BLANCO PERFECTAMENTE CENTRADO */
+.marco-diapositiva-flotante {
+    position: relative;
+    z-index: 10;
+    width: 93vw;
+    height: 88vh;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 30px 70px -15px rgba(15, 23, 42, 0.15);
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* 4. CORRECCIÓN: Eliminamos overflow: hidden para evitar que el texto expandido se corte */
+}
+
+.cabecera-seccion {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.titulo-principal-liquido {
+    font-size: 2.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--color-azul-principal);
+}
+
+.titulo-principal-liquido span {
+    display: inline-block;
+    background: linear-gradient(90deg, #2563eb, #38bdf8, #2563eb);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: flujoLiquidoTexto 4s linear infinite;
+}
+
+.texto-descriptivo-metodologia {
+    font-size: 1.25rem;
+    color: #475569;
+    max-width: 800px;
+    margin: 5px auto 15px auto;
+    text-align: center;
+    line-height: 1.4;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* 2. CORRECCIÓN: ESCENARIO FLEXIBLE CON ALTURA AUTOMÁTICA ADAPTATIVA */
+.escenario-burbujas-interactivas {
+    position: relative;
+    flex-grow: 1;
+    width: 100%;
+    height: 48vh; /* Altura corregida para dar equilibrio de aire arriba y abajo */
+}
+
+/* ESTILO BASE DE LAS BURBUJAS CIRCULARES */
+.burbuja-metodológica {
+    position: absolute;
+    width: 105px;
+    height: 95px;
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #eff6ff 60%, #dbeafe 100%);
+    border: 2px solid rgba(37, 99, 235, 0.25);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.08), inset 0 -3px 8px rgba(37, 99, 235, 0.04);
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 20;
+}
+
+.burbuja-metodológica:hover {
+    transform: scale(1.15);
+    border-color: var(--color-azul-acento);
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.2);
+}
+
+.numero-burbuja {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--color-azul-acento);
+}
+
+.label-burbuja {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #f97316;
+    text-transform: uppercase;
+}
+
+/* CONTENIDO DE DATOS INTERNO OCULTO */
+.contenido-interno-datos {
+    display: none;
+    opacity: 0;
+    text-align: left;
+    width: 100%;
+}
+
+.titulo-panel-metodologia {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #f97316;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    border-bottom: 2px solid rgba(15, 23, 42, 0.06);
+    padding-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+.lista-metodologia-limpia {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-metodologia-limpia li {
+    font-size: 1.1rem;
+    color: #334155;
+    margin-bottom: 8px;
+    line-height: 1.45;
+    position: relative;
+    padding-left: 20px;
+}
+
+.lista-metodologia-limpia li strong {
+    color: var(--color-azul-principal);
+}
+
+.lista-metodologia-limpia li::before {
+    content: "•";
+    color: var(--color-azul-acento);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* 3. CORRECCIÓN: POSICIONAMIENTO INICIAL CENTRADO VERTICALMENTE EN EL EJE MEDIO (40%) */
+.burbuja-metodológica.pos-inicio-1 { left: calc(50% - 175px); top: 40%; }
+.burbuja-metodológica.pos-inicio-2 { left: calc(50% - 52px);  top: 40%; }
+.burbuja-metodológica.pos-inicio-3 { left: calc(50% + 70px);  top: 40%; }
+
+/* 4. CORRECCIÓN: CENTRADO ABSOLUTO TOTAL DEL TEXTO EXPANDIDO (FUSIONADO Y CON PADDING) */
+.burbuja-metodológica.activa-centro {
+    left: 15% !important;
+    top: 5% !important; /* Un poco de aire superior */
+    width: 70% !important;
+    height: 90% !important;
+    border-radius: 0px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 15px 25px !important; /* Añadimos el padding interno que faltaba */
+    cursor: default;
+    z-index: 50;
+}
+
+.burbuja-metodológica.activa-centro .contenido-interno-datos {
+    display: block;
+    animation: desvanecerTextoReal 0.6s 0.3s ease-out forwards;
+}
+.burbuja-metodológica.activa-centro .numero-burbuja,
+.burbuja-metodológica.activa-centro .label-burbuja {
+    display: none;
+}
+
+/* 3. CORRECCIÓN: SEPARACIÓN EXPANSIVA FLUIDA HACIA LOS EXTREMOS LATERALES REALES */
+.burbuja-metodológica.extremo-izquierdo {
+    left: 1% !important;
+    top: 42% !important; /* Centrado vertical alineado con el texto */
+    transform: scale(0.9);
+}
+
+.burbuja-metodológica.extremo-derecho {
+    left: calc(100% - 110px) !important;
+    top: 42% !important;
+    transform: scale(0.9);
+}
+
+.footer-estilizado {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--color-texto-mutado);
+    text-transform: uppercase;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+    padding-top: 15px;
+}
+
+@keyframes desvanecerTextoReal {
+    to { opacity: 1; }
+}
+
+@keyframes flujoLiquidoTexto {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* AGREGAR AL FINAL DE css/herramientas.css */
+
+/* ANIMACIÓN COMPLEJA: Estira, encoge, balancea y cambia de opacidad (Aparecer/Desaparecer solicitado) */
+@keyframes flotadoParpadeoBurbuja {
+    0% {
+        opacity: 0; /* Totalmente invisible al inicio */
+        transform: translateY(20px) translateX(0px) scale(0.9);
+    }
+    30% {
+        opacity: 0.45; /* Aparece suavemente con un tono azul claro sutil */
+    }
+    70% {
+        opacity: 0.45;
+        transform: translateY(-20px) translateX(15px) scale(1.05); /* Se estira y se desplaza elásticamente */
+    }
+    100% {
+        opacity: 0; /* Se desvanece por completo antes de reiniciar su rumbo */
+        transform: translateY(-40px) translateX(-10px) scale(0.95);
+    }
+}

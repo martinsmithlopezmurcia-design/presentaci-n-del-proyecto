@@ -1,0 +1,238 @@
+<!-- contenido.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio de Mercado - Tabla de Contenido</title>
+    <link rel="stylesheet" href="css/globales.css">
+    <link rel="stylesheet" href="css/contenido.css">
+</head>
+<body>
+
+    <!-- Lienzo HTML5 para la red de partículas interactivas -->
+    <canvas id="red-particulas"></canvas>
+
+    <div class="contenedor-contenido">
+        
+        <div class="cabecera-formal">
+            <h2 class="titulo-seccion">Tabla de Contenido</h2>
+            <p class="subtitulo-seccion">Estudio de Mercado - SENA 2026</p>
+        </div>
+
+        <div class="lista-indice-3d">
+            
+            <a href="index.html" class="item-fila-link">
+                <div class="num-card">01</div>
+                <div class="texto-card">Portada</div>
+            </a>
+
+            <a href="contenido.html" class="item-fila-link">
+                <div class="num-card">02</div>
+                <div class="texto-card">Tabla de Contenido</div>
+            </a>
+
+            <a href="pregunta.html" class="item-fila-link">
+                <div class="num-card">03</div>
+                <div class="texto-card">Pregunta de investigación</div>
+            </a>
+
+            <a href="objetivos.html" class="item-fila-link">
+                <div class="num-card">04</div>
+                <div class="texto-card">Objetivos generales y específicos</div>
+            </a>
+
+            <a href="herramientas.html" class="item-fila-link">
+                <div class="num-card">05</div>
+                <div class="texto-card">Herramientas de investigación</div>
+            </a>
+
+            <a href="analisis.html" class="item-fila-link">
+                <div class="num-card">06</div>
+                <div class="texto-card">Análisis de datos</div>
+            </a>
+
+            <a href="conclusiones.html" class="item-fila-link">
+                <div class="num-card">07</div>
+                <div class="texto-card">Conclusiones</div>
+            </a>
+
+        </div>
+
+        <div class="footer-contenido">
+            <div>Garzón, Huila</div>
+            <div style="font-weight: bold; color: var(--color-azul-acento);">ADSO</div>
+        </div>
+
+    </div>
+
+    <script src="js/navegacion.js"></script>
+    <script>
+       <!-- REEMPLAZAR EL BLOQUE DE SCRIPT INFERIOR EN contenido.html -->
+
+    const canvas = document.getElementById('red-particulas');
+    const ctx = canvas.getContext('2d');
+
+    let elementos = [];
+    const mouse = { x: null, y: null, radius: 150 };
+
+    function ajustarPantalla() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    ajustarPantalla();
+    window.addEventListener('resize', ajustarPantalla);
+
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+    window.addEventListener('mouseleave', () => {
+        mouse.x = null; mouse.y = null;
+    });
+
+    // Función auxiliar para dibujar hexágonos perfectos
+    function dibujarHexagono(x, y, size) {
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+            ctx.lineTo(x + size * Math.cos(i * Math.PI / 3), y + size * Math.sin(i * Math.PI / 3));
+        }
+        ctx.closePath();
+    }
+
+    // CLASE 1: REDES POLIGONALES GIRATORIAS (Esquinas inferiores/superiores)
+    class RedGiratoria {
+        constructor(origenX, origenY, radioBase) {
+            this.origenX = origenX;
+            this.origenY = origenY;
+            this.radioBase = radioBase;
+            this.angulo = Math.random() * Math.PI;
+            this.velocidadGiro = 0.002 + Math.random() * 0.003;
+            this.nodos = [];
+            
+            // Crear constelación local de nodos fijos relativos
+            for(let i=0; i<12; i++) {
+                this.nodos.push({
+                    r: Math.random() * radioBase + 50,
+                    a: (i * (Math.PI * 2 / 12)) + (Math.random() * 0.5)
+                });
+            }
+        }
+        actualizar() {
+            this.angulo += this.velocidadGiro; // Rotación constante solicitada
+            
+            let puntosProyectados = this.nodos.map(n => {
+                let anguloFinal = n.a + this.angulo;
+                let rDinamico = n.r;
+
+                // Efecto solicitado: Se estiran y encogen al acercar el mouse
+                if (mouse.x !== null) {
+                    let posX = this.origenX + rDinamico * Math.cos(anguloFinal);
+                    let posY = this.origenY + rDinamico * Math.sin(anguloFinal);
+                    let dx = posX - mouse.x;
+                    let dy = posY - mouse.y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < mouse.radius) {
+                        let factor = (mouse.radius - dist) / mouse.radius;
+                        rDinamico += factor * 35; // Estiramiento elástico
+                    }
+                }
+
+                return {
+                    x: this.origenX + rDinamico * Math.cos(anguloFinal),
+                    y: this.origenY + rDinamico * Math.sin(anguloFinal)
+                };
+            });
+
+            // Dibujar las líneas de la red conectando los nodos circundantes
+            ctx.strokeStyle = 'rgba(3b, 82, f6, 0.08)';
+            ctx.lineWidth = 1;
+            for(let i=0; i<puntosProyectados.length; i++) {
+                for(let j=i+1; j<puntosProyectados.length; j++) {
+                    let dx = puntosProyectados[i].x - puntosProyectados[j].x;
+                    let dy = puntosProyectados[i].y - puntosProyectados[j].y;
+                    if (Math.sqrt(dx*dx + dy*dy) < 160) {
+                        ctx.beginPath();
+                        ctx.moveTo(puntosProyectados[i].x, puntosProyectados[i].y);
+                        ctx.lineTo(puntosProyectados[j].x, puntosProyectados[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Dibujar puntos de los nodos de la red
+            puntosProyectados.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 3, 0, Math.PI*2);
+                ctx.fillStyle = 'rgba(37, 99, 235, 0.2)';
+                ctx.fill();
+            });
+        }
+    }
+
+    // CLASE 2: HEXÁGONOS TECNOLÓGICOS (Aparecen y desaparecen de forma intermitente)
+    class HexagonoIntermitente {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.sizeBase = Math.random() * 25 + 15;
+            this.size = this.sizeBase;
+            this.alfa = 0;
+            this.velocidadFiltro = 0.005 + Math.random() * 0.01;
+            this.fase = 'apareciendo'; 
+        }
+        actualizar() {
+            // Control estricto de opacidad (Aparecer y Desaparecer solicitado)
+            if (this.fase === 'apareciendo') {
+                this.alfa += this.velocidadFiltro;
+                if (this.alfa >= 0.18) this.fase = 'desapareciendo';
+            } else {
+                this.alfa -= this.velocidadFiltro;
+                if (this.alfa <= 0) {
+                    // Reposicionar en otro lugar al desvanecerse del todo
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.fase = 'apareciendo';
+                }
+            }
+
+            // Variación sutil de escala (Encoger/Estirar) autónoma
+            this.size = this.sizeBase + Math.sin(Date.now() * 0.002 + this.x) * 4;
+
+            ctx.save();
+            ctx.strokeStyle = `rgba(37, 99, 235, ${this.alfa})`;
+            ctx.lineWidth = 1.5;
+            dibujarHexagono(this.x, this.y, this.size);
+            ctx.stroke();
+            ctx.restore();
+        }
+    }
+
+    function inicializarEstructuras() {
+        elementos = [];
+        // Inyectar redes giratorias en las 4 esquinas del contenedor plano
+        elementos.push(new RedGiratoria(0, 0, 250));
+        elementos.push(new RedGiratoria(canvas.width, 0, 250));
+        elementos.push(new RedGiratoria(0, canvas.height, 250));
+        elementos.push(new RedGiratoria(canvas.width, canvas.height, 250));
+
+        // Inyectar un enjambre de hexágonos flotantes intermitentes
+        for(let i=0; i<18; i++) {
+            elementos.push(new HexagonoIntermitente());
+        }
+    }
+    inicializarEstructuras();
+    // Reinicializar si cambia el tamaño de la ventana para recalcular las esquinas
+    window.addEventListener('resize', inicializarEstructuras);
+
+    function bucleAnimacion() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        elementos.forEach(el => el.actualizar());
+        requestAnimationFrame(bucleAnimacion);
+    }
+    bucleAnimacion();
+
+
+    </script>
+</body>
+</html>

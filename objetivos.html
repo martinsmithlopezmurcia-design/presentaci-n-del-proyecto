@@ -1,0 +1,107 @@
+<!-- objetivos.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio de Mercado - Objetivos del Proyecto</title>
+    <link rel="stylesheet" href="css/globales.css">
+    <link rel="stylesheet" href="css/pregunta.css"> 
+    <link rel="stylesheet" href="css/objetivos.css">
+</head>
+<body>
+
+    <!-- Capa holográfica interpuesta adelante de las partículas de palitos (Imagen 2 y 3) -->
+    <canvas id="canvas-red-urbana"></canvas>
+
+    <!-- MARCO CONTENEDOR PRINCIPAL FLOTANTE SOBRE EL FONDO LÍQUIDO -->
+    <div class="marco-diapositiva-flotante">
+        
+        <!-- LAYOUT ASIMÉTRICO TOTALMENTE INTEGRADO -->
+        <div class="layout-distribucion-total">
+            
+            <!-- COLUMNA IZQUIERDA: TITULO SELECTIVO Y OBJETIVO GENERAL ESTILIZADO (Imagen 2 y 3) -->
+            <div class="zona-izquierda-contenido">
+                <span class="subtitulo-fase">Fase 02</span>
+                <h2 class="titulo-principal-liquido">Objetivos<br><span>del Proyecto</span></h2>
+                
+                <div class="contenedor-objetivo-general">
+                    <p>
+                        Analizar el mercado de arrendamiento de vivienda urbana en el municipio de Garzón, Huila, identificando las dificultades operativas de inquilinos y propietarios para estructurar los requisitos técnicos de una solución de software adaptada.
+                    </p>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: ESCENARIO GIRATORIO ORBITAL EN 3D REAL (Imagen 1) -->
+            <div class="zona-derecha-escenario-3d">
+                
+                <!-- Anillo cilíndrico tridimensional controlado por código -->
+                <div class="contenedor-orbita-especificos" id="anillo-orbital-objetivos">
+                    
+                    <!-- Tarjeta 1 -->
+                    <div class="panel-especifico-orbital">
+                        <div class="badge-orbita-neon">01</div>
+                        <p class="texto-orbita">Identificar los canales y medios predominantes utilizados por los habitantes de Garzón para publicar y buscar inmuebles en arriendo.</p>
+                    </div>
+
+                    <!-- Tarjeta 2 -->
+                    <div class="panel-especifico-orbital">
+                        <div class="badge-orbita-neon">02</div>
+                        <p class="texto-orbita">Conocer el nivel de aceptación, viabilidad y disposición de los usuarios locales frente al uso de herramientas móviles y plataformas web.</p>
+                    </div>
+
+                    <!-- Tarjeta 3 -->
+                    <div class="panel-especifico-orbital">
+                        <div class="badge-orbita-neon">03</div>
+                        <p class="texto-orbita">Determinar las funcionalidades esenciales, módulos operativos y flujos de datos que debe integrar el aplicativo arquitectónico.</p>
+                    </div>
+
+                    <!-- Tarjeta 4 -->
+                    <div class="panel-especifico-orbital">
+                        <div class="badge-orbita-neon">04</div>
+                        <p class="texto-orbita">Organizar y sintetizar la información recolectada para consolidar el mapa de requerimientos del software de vivienda local.</p>
+                    </div>
+
+                </div>
+
+                <!-- Botones miniatura integrados de navegación tridimensional para el anillo -->
+                <div class="controles-giro-3d">
+                    <button class="btn-giro-3d" onclick="girarCilindro(-90)">&#8634; Girar</button>
+                    <button class="btn-giro-3d" onclick="girarCilindro(90)">Girar &#8635;</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PIE DE PÁGINA DE LA DIAPOSITIVA -->
+        <div class="footer-estilizado">
+            <div>ADSO - SENA 2026</div>
+            <div style="font-weight: bold; color: var(--color-azul-acento);">Objetivos Generales y Específicos</div>
+        </div>
+
+    </div>
+
+    <!-- Enlaces estrictos a los motores de control JavaScript independientes -->
+    <script src="js/navegacion.js"></script>
+    <script src="js/particulas.nieve.js"></script> <!-- Reutiliza tus palitos aleatorios flotando al frente -->
+    
+    <script>
+        // MOTOR MATEMÁTICO INTEGRADO DE ROTACIÓN DE ÓRBITA EN 3D REAL
+        let gradosActuales = 0;
+        const anilloEstructura = document.getElementById('anillo-orbital-objetivos');
+
+        function girarCilindro(grados) {
+            gradosActuales += grados;
+            // Ejecuta el giro tridimensional de los paneles del lado derecho alrededor de su eje central
+            anilloEstructura.style.transform = `rotateY(${gradosActuales}deg)`;
+        }
+
+        // Enlace alternativo con las flechas de dirección Arriba y Abajo del teclado para la órbita
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp') girarCilindro(-90);
+            if (e.key === 'ArrowDown') girarCilindro(90);
+        });
+    </script>
+</body>
+</html>

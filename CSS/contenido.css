@@ -1,0 +1,156 @@
+/* css/contenido.css */
+
+/* Fondo líquido animado donde PREDOMINA EL BLANCO y varía entre perlas y azules ultra-claros */
+body {
+    background: linear-gradient(-45deg, #ffffff, #fdfdfd, #f8fafc, #f1f5f9, #eff6ff, #ffffff);
+    background-size: 400% 400%;
+    animation: gradienteLiquido 14s ease infinite;
+    position: relative;
+}
+
+/* Lienzo para la red geométrica de fondo */
+#red-particulas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+    mix-blend-mode: multiply; 
+}
+
+.contenedor-contenido {
+    width: 85%;
+    max-width: 1100px;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+    perspective: 1200px; /* Base para permitir que los botones se alcen en 3D */
+}
+
+.cabecera-formal {
+    text-align: left;
+    margin-bottom: 25px;
+    animation: entradaTecho 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.titulo-seccion {
+    font-size: 2.8rem;
+    color: var(--color-azul-principal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.subtitulo-seccion {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: var(--color-azul-acento);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Grid contenedor de las filas */
+.lista-indice-3d {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+    row-gap: 22px;
+    width: 100%;
+}
+
+/* TARJETAS/BOTONES DEL ÍNDICE (Más sólidos para resaltar sobre el fondo blanco) */
+.item-fila-link {
+    background: #ffffff; /* Blanco sólido para marcar contraste con las olas del fondo */
+    border: 1px solid rgba(15, 23, 42, 0.14);
+    border-radius: 8px;
+    padding: 22px 28px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Sombra base suave inicial */
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 0;
+    transform: translateY(40px) rotateX(-10deg);
+    animation: entradaCascada 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Tiempos en cascada para la animación de entrada */
+.item-fila-link:nth-child(1) { animation-delay: 0.05s; }
+.item-fila-link:nth-child(2) { animation-delay: 0.1s; }
+.item-fila-link:nth-child(3) { animation-delay: 0.15s; }
+.item-fila-link:nth-child(4) { animation-delay: 0.2s; }
+.item-fila-link:nth-child(5) { animation-delay: 0.25s; }
+.item-fila-link:nth-child(6) { animation-delay: 0.3s; }
+.item-fila-link:nth-child(7) { animation-delay: 0.35s; }
+
+.num-card {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #f97316;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.texto-card {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #475569; /* Azul grisáceo más suave y menos intenso, idéntico a tu imagen */
+    transition: all 0.3s ease;
+}
+
+.item-fila-link:hover {
+    background: #ffffff;
+    /* ESTO AGRANDA EL CONTENEDOR UN 5% Y LO ALZA AL MISMO TIEMPO */
+    transform: translateY(-1px) scale(1.05) !important; 
+    border-color: var(--color-azul-acento);
+    /* Sombra profunda para que se note el efecto de flotado/sobresalido */
+    box-shadow: 0 20px 35px rgba(15, 23, 42, 0.1), 0 0 25px rgba(37, 99, 235, 0.25);
+    transition: all 0.3s ease-out !important;
+}
+
+.item-fila-link:hover .num-card {
+    transform: scale(1.3);
+    color: var(--color-azul-acento);
+}
+
+.item-fila-link:hover .texto-card {
+    transform: translateX(5px);
+    color: var(--color-azul-acento); /* Se ilumina suavemente en azul al pasar el mouse */
+}
+
+.footer-contenido {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--color-texto-mutado);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
+    padding-top: 15px;
+    margin-top: 20px;
+}
+
+/* ANIMACIONES */
+@keyframes gradienteLiquido {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes entradaTecho {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes entradaCascada {
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+    }
+}
