@@ -7,7 +7,8 @@ const paginas = [
     "objetivos.html",
     "herramientas.html",
     "analisis.html",
-    "conclusiones.html"
+    "conclusiones.html",
+    "final.html"
 ];
 
 const paginaActual = window.location.pathname.split("/").pop() || "index.html";

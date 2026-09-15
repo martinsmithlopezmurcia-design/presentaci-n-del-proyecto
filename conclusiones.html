@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conclusiones Finales - Fase 05</title>
+    <link rel="stylesheet" href="CSS/conclusiones.css">
+
+
+</head>
+<body>
+
+    <!-- Cursor personalizado -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Canvas de partículas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="page-wrapper">
+
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-bar"></div>
+            <div class="header-content">
+                <div class="fase-label">Fase 05 | Conclusiones Finales</div>
+                <h1>Resultados del Estudio</h1>
+                <p>Impacto real y justificación técnica para el desarrollo del software</p>
+            </div>
+        </div>
+
+        <!-- STATS PILLS -->
+        <div class="stats-bar">
+            <div class="stat-pill">
+                <div class="pill-dot"></div>
+                <span><strong>24</strong> encuestados totales</span>
+            </div>
+            <div class="stat-pill">
+                <div class="pill-dot" style="background: var(--purple)"></div>
+                <span><strong>12</strong> inquilinos · <strong>12</strong> propietarios</span>
+            </div>
+            <div class="stat-pill">
+                <div class="pill-dot" style="background: #10b981"></div>
+                <span>Garzón, Huila · <strong>2024</strong></span>
+            </div>
+            <div class="stat-pill">
+                <div class="pill-dot" style="background: var(--orange)"></div>
+                <span>Ficha <strong>3229944</strong></span>
+            </div>
+        </div>
+
+        <!-- GRID DE CONCLUSIONES -->
+        <div class="conclusions-grid">
+
+            <!-- Card 01 -->
+            <div class="conclusion-card" data-delay="0.4">
+                <div class="card-header">
+                    <div class="card-number">01</div>
+                    <div class="card-title">Problemática del Inquilino</div>
+                </div>
+                <div class="card-body">
+                    Buscar arriendo en Garzón es un proceso desgastante con una 
+                    <span class="highlight">dificultad de 3.42 / 5</span>. 
+                    La dependencia de redes informales deja totalmente desprotegida 
+                    a la población flotante y estudiantil que llega de afuera.
+                    <br><br>
+                    <span class="mini-stat">⚠ 58.3% lo califica como Regular</span>
+                </div>
+            </div>
+
+            <!-- Card 02 -->
+            <div class="conclusion-card" data-delay="0.55">
+                <div class="card-header">
+                    <div class="card-number">02</div>
+                    <div class="card-title">Desafíos del Propietario</div>
+                </div>
+                <div class="card-body">
+                    Los arrendadores sufren una 
+                    <span class="highlight">dificultad de 3.17 / 5</span> 
+                    para conseguir clientes. Además, existe un grave riesgo legal en el municipio: 
+                    <span class="highlight">1 de cada 3 propietarios</span> 
+                    todavía arrienda usando contratos puramente verbales.
+                    <br><br>
+                    <span class="mini-stat" style="background:#fef3c7; color:#d97706">⚠ 33% sin contrato escrito</span>
+                </div>
+            </div>
+
+            <!-- Card 03 -->
+            <div class="conclusion-card" data-delay="0.7">
+                <div class="card-header">
+                    <div class="card-number">03</div>
+                    <div class="card-title">Exigencia de Seguridad</div>
+                </div>
+                <div class="card-body">
+                    Existe un <span class="highlight">acuerdo absoluto (100%)</span> en la necesidad de 
+                    transparencia total: precios reales, fotos verificadas y normas claras. 
+                    Los inquilinos exigen verificar la identidad del dueño para evitar estafas 
+                    y generar confianza desde el primer contacto.
+                    <br><br>
+                    <span class="mini-stat" style="background:#f3e8ff; color:#7c3aed">✓ 100% exige verificación</span>
+                </div>
+            </div>
+
+            <!-- Card 04 -->
+            <div class="conclusion-card" data-delay="0.85">
+                <div class="card-header">
+                    <div class="card-number">04</div>
+                    <div class="card-title">Brecha Tecnológica</div>
+                </div>
+                <div class="card-body">
+                    Ninguna plataforma digital cubre actualmente el mercado de Garzón. 
+                    Los medios actuales (voz a voz, redes sociales informales) son 
+                    <span class="highlight-purple">ineficientes e inseguros</span>. 
+                    Existe una <span class="highlight">oportunidad de mercado real</span> 
+                    completamente desatendida en el municipio.
+                    <br><br>
+                    <span class="mini-stat" style="background:#fef3c7; color:#d97706">📱 0 plataformas locales</span>
+                </div>
+            </div>
+
+            <!-- Card 05 - SOLUCIÓN (full width) -->
+            <div class="conclusion-card card-solution" data-delay="1.0">
+                <div class="solution-content">
+                    <div>
+                        <div class="card-header">
+                            <div class="card-number">05</div>
+                            <div class="card-title">Solución del Problema</div>
+                        </div>
+                        <div class="card-body">
+                            El resultado de este <strong style="color:white">proyecto de investigación</strong> demuestra 
+                            que la solución definitiva es la creación de un aplicativo que centralice y 
+                            digitalice todo el proceso de búsqueda y publicación de arriendos en Garzón, Huila. 
+                            Una plataforma que conecte de forma segura, transparente y eficiente a inquilinos 
+                            y propietarios, eliminando las barreras actuales del mercado informal.
+                        </div>
+                        <div class="solution-features">
+                            <span class="feature-chip">📍 Geolocalización</span>
+                            <span class="feature-chip">🔐 Verificación de identidad</span>
+                            <span class="feature-chip">📄 Contratos digitales</span>
+                            <span class="feature-chip">💬 Chat seguro</span>
+                            <span class="feature-chip">🏠 Filtros avanzados</span>
+                            <span class="feature-chip">⭐ Sistema de reseñas</span>
+                        </div>
+                    </div>
+                    <div style="text-align:center; flex-shrink:0">
+                        <canvas id="canvas-3d-solution" width="140" height="140"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SECCIÓN DE IMPACTO -->
+        <div class="impact-section">
+            <h3>Impacto Proyectado de la Solución</h3>
+            <div class="impact-metrics">
+                <div class="metric-box">
+                    <span class="metric-number" data-target="3.42">0</span>
+                    <div class="metric-label">Dificultad de búsqueda<br>actual (inquilinos)</div>
+                    <div class="metric-bar"></div>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-number" data-target="100" data-suffix="%">0</span>
+                    <div class="metric-label">Acuerdo en necesidad<br>de transparencia</div>
+                    <div class="metric-bar" style="background: linear-gradient(90deg, var(--purple), #a855f7)"></div>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-number" data-target="33" data-suffix="%">0</span>
+                    <div class="metric-label">Propietarios sin<br>contrato escrito</div>
+                    <div class="metric-bar" style="background: linear-gradient(90deg, #f59e0b, #fbbf24)"></div>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-number" data-target="24">0</span>
+                    <div class="metric-label">Participantes del<br>estudio de campo</div>
+                    <div class="metric-bar" style="background: linear-gradient(90deg, #10b981, #34d399)"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="js/navegacion.js"></script>
+
+    <script>
+    // ============================================================
+    // 1. CURSOR PERSONALIZADO
+    // ============================================================
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorRing = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorDot.style.left = mouseX + 'px';
+        cursorDot.style.top = mouseY + 'px';
+    });
+
+    function animateCursor() {
+        ringX += (mouseX - ringX) * 0.12;
+        ringY += (mouseY - ringY) * 0.12;
+        cursorRing.style.left = ringX + 'px';
+        cursorRing.style.top = ringY + 'px';
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('.conclusion-card, .stat-pill, .metric-box').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorRing.style.width = '60px';
+            cursorRing.style.height = '60px';
+            cursorRing.style.borderColor = 'rgba(26,86,219,0.6)';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursorRing.style.width = '35px';
+            cursorRing.style.height = '35px';
+            cursorRing.style.borderColor = 'rgba(26,86,219,0.4)';
+        });
+    });
+
+    // ============================================================
+    // 2. SISTEMA DE PARTÍCULAS (fondo)
+    // ============================================================
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const PARTICLE_COUNT = 60;
+
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.radius = Math.random() * 3 + 1;
+            this.speedX = (Math.random() - 0.5) * 0.5;
+            this.speedY = (Math.random() - 0.5) * 0.5;
+            this.opacity = Math.random() * 0.4 + 0.1;
+            this.color = Math.random() > 0.5 ? '26,86,219' : '59,130,246';
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x < 0 || this.x > canvas.width || 
+                this.y < 0 || this.y > canvas.height) this.reset();
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${this.color},${this.opacity})`;
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(new Particle());
+    }
+
+    function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                if (dist < 120) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(59,130,246,${0.08 * (1 - dist/120)})`;
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        drawConnections();
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // ============================================================
+    // 3. ANIMACIÓN 3D - CUBO ROTANTE (tarjeta solución)
+    // ============================================================
+    const canvas3d = document.getElementById('canvas-3d-solution');
+    const ctx3d = canvas3d.getContext('2d');
+    let angle = 0;
+
+    function project3D(x, y, z, fov = 200, viewDist = 5) {
+        const factor = fov / (viewDist + z);
+        return {
+            x: x * factor + canvas3d.width / 2,
+            y: y * factor + canvas3d.height / 2
+        };
+    }
+
+    function rotate3D(x, y, z, rx, ry) {
+        // Rotación Y
+        let x1 = x * Math.cos(ry) + z * Math.sin(ry);
+        let z1 = -x * Math.sin(ry) + z * Math.cos(ry);
+        // Rotación X
+        let y1 = y * Math.cos(rx) - z1 * Math.sin(rx);
+        let z2 = y * Math.sin(rx) + z1 * Math.cos(rx);
+        return { x: x1, y: y1, z: z2 };
+    }
+
+    function drawCube() {
+        ctx3d.clearRect(0, 0, canvas3d.width, canvas3d.height);
+        
+        const size = 35;
+        const vertices = [
+            [-size,-size,-size],[size,-size,-size],[size,size,-size],[-size,size,-size],
+            [-size,-size, size],[size,-size, size],[size,size, size],[-size,size, size]
+        ];
+
+        const faces = [
+            [0,1,2,3,'rgba(26,86,219,0.3)','rgba(26,86,219,0.8)'],
+            [4,5,6,7,'rgba(59,130,246,0.3)','rgba(59,130,246,0.8)'],
+            [0,1,5,4,'rgba(37,99,235,0.3)','rgba(37,99,235,0.8)'],
+            [2,3,7,6,'rgba(96,165,250,0.3)','rgba(96,165,250,0.8)'],
+            [0,3,7,4,'rgba(147,197,253,0.2)','rgba(147,197,253,0.6)'],
+            [1,2,6,5,'rgba(29,78,216,0.3)','rgba(29,78,216,0.8)']
+        ];
+
+        const rx = angle * 0.5;
+        const ry = angle;
+
+        const projected = vertices.map(([x, y, z]) => {
+            const r = rotate3D(x, y, z, rx, ry);
+            return project3D(r.x, r.y, r.z);
+        });
+
+        const rotated = vertices.map(([x, y, z]) => rotate3D(x, y, z, rx, ry));
+
+        faces.forEach(([a, b, c, d, fill, stroke]) => {
+            // Normal para backface culling
+            const v1 = rotated[b], v2 = rotated[a], v3 = rotated[c];
+            const nx = (v2.y-v1.y)*(v3.z-v1.z) - (v2.z-v1.z)*(v3.y-v1.y);
+            const ny = (v2.z-v1.z)*(v3.x-v1.x) - (v2.x-v1.x)*(v3.z-v1.z);
+            const nz = (v2.x-v1.x)*(v3.y-v1.y) - (v2.y-v1.y)*(v3.x-v1.x);
+            if (nz < 0) return;
+
+            ctx3d.beginPath();
+            ctx3d.moveTo(projected[a].x, projected[a].y);
+            ctx3d.lineTo(projected[b].x, projected[b].y);
+            ctx3d.lineTo(projected[c].x, projected[c].y);
+            ctx3d.lineTo(projected[d].x, projected[d].y);
+            ctx3d.closePath();
+            ctx3d.fillStyle = fill;
+            ctx3d.fill();
+            ctx3d.strokeStyle = stroke;
+            ctx3d.lineWidth = 1.5;
+            ctx3d.stroke();
+        });
+
+        angle += 0.015;
+        requestAnimationFrame(drawCube);
+    }
+    drawCube();
+
+    // ============================================================
+    // 4. ANIMACIÓN DE APARICIÓN DE CARDS (Intersection Observer)
+    // ============================================================
+    const cards = document.querySelectorAll('.conclusion-card');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = parseFloat(entry.target.dataset.delay || 0) * 1000;
+                setTimeout(() => {
+                    entry.target.classList.add('animated');
+                }, delay - 400);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => observer.observe(card));
+
+    // ============================================================
+    // 5. COUNTER ANIMATION (números del impacto)
+    // ============================================================
+    const metricNumbers = document.querySelectorAll('.metric-number');
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseFloat(el.dataset.target);
+                const suffix = el.dataset.suffix || '';
+                const isDecimal = target % 1 !== 0;
+                let start = 0;
+                const duration = 1500;
+                const step = (timestamp) => {
+                    if (!start) start = timestamp;
+                    const progress = Math.min((timestamp - start) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = eased * target;
+                    el.textContent = isDecimal ? current.toFixed(2) + suffix : Math.round(current) + suffix;
+                    if (progress < 1) requestAnimationFrame(step);
+                };
+                requestAnimationFrame(step);
+                counterObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    metricNumbers.forEach(el => counterObserver.observe(el));
+
+    // ============================================================
+    // 6. EFECTO PARALLAX 3D EN CARDS (mouse move)
+    // ============================================================
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform = `
+                translateY(-8px) 
+                rotateX(${-y * 8}deg) 
+                rotateY(${x * 8}deg)
+                scale(1.01)
+            `;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+
+    // ============================================================
+    // 7. ANIMACIÓN DE ESCRITURA EN EL TÍTULO
+    // ============================================================
+    const title = document.querySelector('.header-content h1');
+    const originalText = title.textContent;
+    title.textContent = '';
+    let charIndex = 0;
+
+    function typeWriter() {
+        if (charIndex < originalText.length) {
+            title.textContent += originalText[charIndex];
+            charIndex++;
+            setTimeout(typeWriter, 40);
+        }
+    }
+    setTimeout(typeWriter, 600);
+
+    // ============================================================
+    // 8. RIPPLE EN TARJETAS AL CLICK
+    // ============================================================
+    cards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = card.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.cssText = `
+                position:absolute; border-radius:50%; 
+                width:${size}px; height:${size}px;
+                left:${e.clientX - rect.left - size/2}px;
+                top:${e.clientY - rect.top - size/2}px;
+                background:rgba(26,86,219,0.1);
+                transform:scale(0);
+                animation: rippleAnim 0.6s linear;
+                pointer-events:none;
+                z-index:10;
+            `;
+            card.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+
+    // Añadir keyframe de ripple dinámicamente
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+        @keyframes rippleAnim {
+            to { transform: scale(2); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(styleSheet);
+
+    </script>
+</body>
+</html>
+
+</body>
+</html>

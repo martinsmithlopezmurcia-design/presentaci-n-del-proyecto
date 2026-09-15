@@ -1,304 +1,449 @@
-/* css/analisis.css */
+        /* =============================================
+           RESET Y BASE
+        ============================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-    --color-azul-principal: #0f172a;
-    --color-azul-acento: #2563eb;
-    --color-texto-mutado: #64748b;
-}
+        /* Fondo claro degradado gris-azulado (estilo imagen 2) */
+        .fondo-futurista {
+            background: radial-gradient(ellipse at 60% 40%, #dce8f7 0%, #eaf1fb 40%, #f0f4fb 70%, #e8eef8 100%);
+            color: #1a2340;
+            font-family: 'Rajdhani', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
 
-/* CENTRADO MATEMÁTICO ABSOLUTO DE LA DIAPOSITIVA EN TU MONITOR */
-body {
-    background: #e2e8f0;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
-    display: flex; /* Activa el entorno flexible de centrado */
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    position: relative;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-}
+        /* Puntos de constelación decorativos */
+        .fondo-futurista::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(59, 130, 246, 0.2) 1.5px, transparent 1.5px);
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-/* EL CANVAS SE QUEDA ABAJO (Z-INDEX: 1) PARA NO BLOQUEAR LOS EVENTOS DEL RATÓN */
-#canvas-red-urbana {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 1;
-    display: block;
-}
+        /* SVG decorativo de líneas de constelación */
+        .svg-decorativo {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.45;
+        }
 
-/* MARCO CONTENEDOR PRINCIPAL BLANCO FLOTANTE (CAPA INTERMEDIA) */
-.marco-diapositiva-flotante {
-    position: relative;
-    z-index: 10;
-    width: 93vw;
-    height: 88vh;
-    background: #ffffff;
-    border-radius: 14px;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    box-shadow: 0 30px 70px -15px rgba(15, 23, 42, 0.15);
-    padding: 32px 50px 20px 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+        .linea-decorativa { stroke: rgba(59,130,246,0.28); stroke-width: 1; fill: none; }
+        .punto-decorativo  { fill: rgba(59,130,246,0.45); }
 
-/* CABECERA FORMAL */
-.cabecera-seccion {
-    text-align: left;
-    width: 100%;
-    flex-shrink: 0;
-}
+        /* =============================================
+           CONTENEDOR PRINCIPAL
+        ============================================= */
+        .contenedor-presentacion {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
 
-.fase-label {
-    font-size: 0.78rem;
-    font-weight: bold;
-    color: var(--color-azul-acento);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
+        /* =============================================
+           CABECERA
+        ============================================= */
+        .cabecera-analisis {
+            text-align: left;
+            margin-bottom: 2rem;
+            border-left: 4px solid #2563eb;
+            padding-left: 1.5rem;
+        }
 
-.titulo-principal-liquido {
-    font-size: 2.4rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    line-height: 1.1;
-    color: var(--color-azul-principal);
-    margin: 2px 0 0 0;
-}
+        .tag-ficha {
+            font-family: 'Orbitron', sans-serif;
+            color: #2563eb;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
 
-.titulo-principal-liquido span {
-    display: inline-block;
-    background: linear-gradient(90deg, #2563eb, #38bdf8, #2563eb);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: flujoLiquidoTexto 4s linear infinite;
-}
+        .titulo-neon {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+            color: #1a2340;
+            text-shadow: none;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
 
-/* LAYOUT ASIMÉTRICO DE DOS MITADES HORIZONTALES REALES (50% / 50%) */
-.layout-analisis {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-    flex-grow: 1;
-    min-height: 0;
-    padding: 10px 0;
-    width: 100%;
-}
+        .subtitulo-neon {
+            color: #4a6080;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
 
-/* =============================================
-   MITAD IZQUIERDA — GRÁFICO SEGURO DE MÉTRICAS
-============================================= */
-.contenedor-grafico-tecnologico {
-    background: #f8fafc;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    border-radius: 16px;
-    padding: 24px 20px 10px 20px;
-    height: 90%; /* Ajuste para dar aire proporcional */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-}
+        /* =============================================
+           INTERFAZ DASHBOARD
+        ============================================= */
+        .interfaz-dashboard {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
 
-.titulo-grafico {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--color-azul-principal);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    letter-spacing: 0.5px;
-    text-align: center;
-    flex-shrink: 0;
-}
+        /* =============================================
+           CONTROLES / BOTONES
+        ============================================= */
+        .controles-3d {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
 
-.grafico-flex-eje {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    flex-grow: 1;
-    border-bottom: 2px solid #cbd5e1;
-    padding-bottom: 5px;
-    width: 100%;
-    min-height: 0;
-    margin-bottom: 30px; /* Evita colisiones de textos inferiores */
-}
+        .btn-holograma {
+            background: rgba(255, 255, 255, 0.72);
+            border: 1.5px solid rgba(37, 99, 235, 0.32);
+            color: #1e40af;
+            padding: 0.75rem 1.6rem 0.6rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(37, 99, 235, 0.1);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
 
-.columna-barra-viva {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    width: 22%;
-    height: 100%;
-    position: relative;
-}
+        .btn-holograma::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            transition: 0.5s;
+        }
 
-.barra-relleno-grafica {
-    width: 38px;
-    background: linear-gradient(to top, #2563eb, #38bdf8);
-    border-radius: 6px 6px 0 0;
-    box-shadow: 0 8px 16px rgba(37, 99, 235, 0.15);
-    height: 0;
-    animation: elevacionBarra 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-}
+        .btn-holograma:hover::before { left: 100%; }
 
-.barra-relleno-grafica.destacada {
-    background: linear-gradient(to top, #ea580c, #f97316);
-    box-shadow: 0 8px 16px rgba(249, 115, 22, 0.15);
-}
+        .btn-holograma:hover {
+            background: rgba(37, 99, 235, 0.1);
+            box-shadow: 0 4px 18px rgba(37, 99, 235, 0.22);
+            transform: translateY(-2px);
+            border-color: #2563eb;
+        }
 
-.valor-flotante-barra {
-    font-size: 1rem;
-    font-weight: 900;
-    color: var(--color-azul-principal);
-    margin-bottom: 5px;
-    opacity: 0;
-    animation: aparecerTextoMétrica 0.5s 1.2s ease-out forwards;
-}
+        .btn-holograma.activo {
+            background: #2563eb;
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.38);
+            border-color: #2563eb;
+            transform: translateY(-2px) scale(1.03);
+        }
 
-.etiqueta-eje-x {
-    position: absolute;
-    top: calc(100% + 8px);
-    font-size: 0.72rem;
-    font-weight: bold;
-    color: #64748b;
-    text-transform: uppercase;
-    text-align: center;
-    line-height: 1.2;
-    width: 100%;
-}
+        /* Indicador de clicks (puntitos) */
+        .indicador-clicks {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+        }
 
-/* =============================================
-   MITAD DERECHA — DISPLAY REVELABLE VERTICAL
-============================================= */
-.contenedor-scroll-vertical-hallazgos {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: visible;
-}
+        .punto {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            border: 1px solid rgba(255,255,255,0.6);
+            transition: all 0.3s;
+        }
 
-/* Las tarjetas usan opacidad y visibilidad para transiciones CSS fluidas */
-.tarjeta-hallazgo-clic {
-    position: absolute;
-    width: 82%; /* Reserva el 18% lateral para los botones */
-    left: 0;
-    background: #ffffff;
-    border: 1px solid rgba(15, 23, 42, 0.12);
-    border-radius: 16px;
-    padding: 30px 28px;
-    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04);
-    text-align: left;
+        .btn-holograma:not(.activo) .punto {
+            background: rgba(37, 99, 235, 0.25);
+            border-color: rgba(37, 99, 235, 0.4);
+        }
 
-    /* Estado oculto estable */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(30px) scale(0.97);
-    transition:
-        opacity 0.45s cubic-bezier(0.165, 0.84, 0.44, 1),
-        transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1),
-        visibility 0.45s,
-        border-color 0.3s,
-        box-shadow 0.3s;
-    pointer-events: none;
-}
+        .btn-holograma:not(.activo) .punto.activo {
+            background: #2563eb;
+            border-color: #1d4ed8;
+        }
 
-/* Estado activo proyectado */
-.tarjeta-hallazgo-clic.activa-vertical {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-    border-color: var(--color-azul-acento);
-    box-shadow: 0 25px 50px rgba(15, 23, 42, 0.08), 0 0 25px rgba(37, 99, 235, 0.15);
-    pointer-events: auto;
-}
+        .punto.activo {
+            background: rgba(255,255,255,0.95);
+            border-color: rgba(255,255,255,1);
+            box-shadow: 0 0 4px rgba(255,255,255,0.8);
+        }
 
-.titulo-hallazgo {
-    font-size: 1.35rem;
-    font-weight: bold;
-    color: #f97316;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    letter-spacing: 0.5px;
-    border-bottom: 2px solid rgba(15, 23, 42, 0.06);
-    padding-bottom: 6px;
-}
+        /* =============================================
+           ESCENARIO 3D
+        ============================================= */
+        .escenario-3d {
+            perspective: 1200px;
+            min-height: 420px;
+            position: relative;
+        }
 
-.tarjeta-hallazgo-clic p {
-    font-size: 1.15rem;
-    color: #475569;
-    line-height: 1.45;
-    font-family: 'Times New Roman', Times, serif;
-}
+        /* =============================================
+           BLOQUES / SECCIONES PRINCIPALES
+        ============================================= */
+        .bloque-seccion {
+            transition: all 0.55s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-style: preserve-3d;
+        }
 
-/* CONTROLES VERTICALES FLOTANTES EN CAPA ALTA (Z-INDEX: 100) */
-.controles-direccionales-verticales {
-    position: absolute;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 100; /* Asegura clics por encima de las capas translúcidas */
-}
+        .bloque-seccion.oculto {
+            opacity: 0;
+            transform: rotateX(40deg) translateZ(-80px);
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+            top: 0;
+        }
 
-.btn-direccion-v {
-    background: #ffffff;
-    border: 1px solid rgba(15, 23, 42, 0.12);
-    color: var(--color-azul-principal);
-    width: 45px;
-    height: 45px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
+        .bloque-seccion.activo {
+            opacity: 1;
+            transform: rotateX(0deg) translateZ(0);
+        }
 
-.btn-direccion-v:hover {
-    background: var(--color-azul-acento);
-    color: #ffffff;
-    border-color: var(--color-azul-acento);
-    transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
-}
+        /* =============================================
+           SUB-PANTALLAS (las 3 pantallas de cada sección)
+        ============================================= */
+        .sub-pantalla {
+            display: none;
+        }
 
-.footer-estilizado {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: var(--color-texto-mutado);
-    text-transform: uppercase;
-    border-top: 1px solid rgba(15, 23, 42, 0.06);
-    padding-top: 15px;
-    flex-shrink: 0;
-}
+        .sub-pantalla.activo {
+            display: block;
+            animation: fadeSlideIn 0.4s ease forwards;
+        }
 
-/* KEYFRAMES */
-@keyframes elevacionBarra {
-    to { height: var(--altura-objetivo); }
-}
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
 
-@keyframes aparecerTextoMétrica {
-    to { opacity: 1; }
-}
+        /* Grid de tarjetas dentro de sub-pantalla */
+        .grid-tarjetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
 
-@keyframes flujoLiquidoTexto {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
-}
+        .grid-tarjetas.una-col { grid-template-columns: 1fr; }
+        .grid-tarjetas.dos-col { grid-template-columns: 1fr 1fr; }
+
+        /* =============================================
+           TARJETAS DE CRISTAL (estilo claro)
+        ============================================= */
+        .tarjeta-cristal {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(37, 99, 235, 0.14);
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: 0 4px 24px rgba(37, 99, 235, 0.08), 0 1px 4px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tarjeta-cristal:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 12px 38px rgba(37, 99, 235, 0.16);
+            border-color: rgba(37, 99, 235, 0.28);
+        }
+
+        .tarjeta-cristal h3 {
+            margin-top: 0;
+            font-size: 1.25rem;
+            color: #1a2340;
+            border-bottom: 1.5px solid rgba(37, 99, 235, 0.13);
+            padding-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+
+        .tarjeta-cristal.alertado {
+            border-left: 4px solid #2563eb;
+        }
+
+        .tarjeta-cristal.grande {
+            grid-column: 1 / -1;
+        }
+
+        /* =============================================
+           MÉTRICAS NUMÉRICAS GRANDES
+        ============================================= */
+        .metrica-principal,
+        .numero-grande {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 1.4rem 0;
+            color: #2563eb;
+        }
+
+        .metrica-principal span,
+        .numero-grande span {
+            font-size: 1.5rem;
+            color: #7a90b0;
+        }
+
+        .neon-verde,
+        .resalte-azul {
+            color: #16a34a;
+        }
+
+        .conclusion-tarjeta,
+        .resumen-dato {
+            color: #374151;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* =============================================
+           BARRAS DE PROGRESO
+        ============================================= */
+        .contenedor-grafico,
+        .contenedor-barras {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .contenedor-grafico.grid-dos,
+        .contenedor-barras.grid-cruce {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.4rem;
+        }
+
+        .barra-grupo,
+        .fila-barra {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .barra-grupo label,
+        .fila-barra label {
+            font-size: 0.95rem;
+            color: #4a6080;
+            font-weight: 500;
+        }
+
+        .progreso-borde,
+        .riel-progreso {
+            background: rgba(37, 99, 235, 0.07);
+            border: 1px solid rgba(37, 99, 235, 0.18);
+            height: 14px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .barra-llenado,
+        .llenado {
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            transition: width 1.2s cubic-bezier(0.1, 1, 0.1, 1);
+            position: relative;
+        }
+
+        /* Porcentaje flotante dentro de la barra */
+        .barra-llenado::after,
+        .llenado::after {
+            content: attr(data-porcentaje) attr(data-valor);
+            position: absolute;
+            right: 8px;
+            top: -1px;
+            font-size: 0.72rem;
+            font-weight: bold;
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+            white-space: nowrap;
+        }
+
+        /* Colores de barras — paleta azul/clara */
+        .barra-llenado.azul,
+        .llenado.azul-sena      { background: linear-gradient(90deg, #3b82f6, #1d4ed8); box-shadow: 0 0 8px rgba(59,130,246,0.38); }
+        .barra-llenado.morado,
+        .llenado.azul-oscuro    { background: linear-gradient(90deg, #6366f1, #4338ca); box-shadow: 0 0 8px rgba(99,102,241,0.38); }
+        .barra-llenado.naranja,
+        .llenado.naranja-alerta { background: linear-gradient(90deg, #f59e0b, #d97706); box-shadow: 0 0 8px rgba(245,158,11,0.38); }
+        .barra-llenado.cian,
+        .llenado.azul-brillante { background: linear-gradient(90deg, #06b6d4, #0284c7); box-shadow: 0 0 8px rgba(6,182,212,0.38); }
+
+        .nota-cruce {
+            margin-top: 1.5rem;
+            color: #1d4ed8;
+            font-style: italic;
+            font-size: 1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* =============================================
+           COMPARATIVA FLEX (cruce pantalla 2)
+        ============================================= */
+        .comparativa-flex {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .caja-comp {
+            background: rgba(37,99,235,0.06);
+            border: 1.5px solid rgba(37,99,235,0.18);
+            border-radius: 12px;
+            padding: 1.4rem 2.5rem;
+            text-align: center;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .caja-comp h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            color: #2563eb;
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+        }
+
+        .num-comp {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #1a2340;
+        }
+
+        .centralizado { text-align: center; }
+        .centro-alerta { text-align: center; }
+
+        /* =============================================
+           RESPONSIVE
+        ============================================= */
+        @media (max-width: 768px) {
+            .titulo-neon { font-size: 1.6rem; }
+            .metrica-principal, .numero-grande { font-size: 2.8rem; }
+            .controles-3d { gap: 0.8rem; }
+            .btn-holograma { padding: 0.6rem 1rem; font-size: 0.72rem; }
+            .contenedor-grafico.grid-dos,
+            .contenedor-barras.grid-cruce { grid-template-columns: 1fr; }
+            .grid-tarjetas.dos-col { grid-template-columns: 1fr; }
+            .comparativa-flex { flex-direction: column; align-items: center; }
+        }

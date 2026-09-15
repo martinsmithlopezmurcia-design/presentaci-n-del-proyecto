@@ -1,158 +1,358 @@
-<!-- analisis.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudio de Mercado - Análisis de Datos</title>
-    <!-- Enlaces limpios e independientes a los estilos -->
+    <title>Análisis de Datos - ADSO 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/analisis.css">
     <link rel="stylesheet" href="css/globales.css">
-    <link rel="stylesheet" href="css/analisis.css">
 </head>
-<body>
+<body class="fondo-futurista">
 
-    <!-- Canvas para la lluvia de copos de nieve azul claro que flota adelante -->
-    <canvas id="canvas-red-urbana"></canvas>
+    <!-- SVG decorativo constelación (fijo, fondo) -->
+    <svg class="svg-decorativo" xmlns="http://www.w3.org/2000/svg">
+        <line x1="8%"  y1="12%" x2="28%" y2="22%" class="linea-decorativa"/>
+        <line x1="28%" y1="22%" x2="52%" y2="8%"  class="linea-decorativa"/>
+        <line x1="52%" y1="8%"  x2="73%" y2="18%" class="linea-decorativa"/>
+        <line x1="73%" y1="18%" x2="92%" y2="7%"  class="linea-decorativa"/>
+        <line x1="62%" y1="52%" x2="82%" y2="42%" class="linea-decorativa"/>
+        <line x1="82%" y1="42%" x2="96%" y2="57%" class="linea-decorativa"/>
+        <line x1="82%" y1="42%" x2="87%" y2="67%" class="linea-decorativa"/>
+        <line x1="5%"  y1="68%" x2="18%" y2="83%" class="linea-decorativa"/>
+        <line x1="18%" y1="83%" x2="42%" y2="88%" class="linea-decorativa"/>
+        <circle cx="8%"  cy="12%" r="3"   class="punto-decorativo"/>
+        <circle cx="28%" cy="22%" r="3"   class="punto-decorativo"/>
+        <circle cx="52%" cy="8%"  r="4"   class="punto-decorativo"/>
+        <circle cx="73%" cy="18%" r="3"   class="punto-decorativo"/>
+        <circle cx="92%" cy="7%"  r="2.5" class="punto-decorativo"/>
+        <circle cx="62%" cy="52%" r="3"   class="punto-decorativo"/>
+        <circle cx="82%" cy="42%" r="4"   class="punto-decorativo"/>
+        <circle cx="96%" cy="57%" r="2.5" class="punto-decorativo"/>
+        <circle cx="87%" cy="67%" r="2.5" class="punto-decorativo"/>
+        <circle cx="5%"  cy="68%" r="2.5" class="punto-decorativo"/>
+        <circle cx="18%" cy="83%" r="3"   class="punto-decorativo"/>
+        <circle cx="42%" cy="88%" r="2"   class="punto-decorativo"/>
+    </svg>
 
-    <!-- MARCO CONTENEDOR PRINCIPAL FLOTANTE PERFECTAMENTE CENTRADO EN EL BODY -->
-    <div class="marco-diapositiva-flotante">
-        
-        <!-- ENCABEZADO COMPLETAMENTE LIMPIO -->
-        <div class="cabecera-seccion">
-            <span class="fase-label">Fase 04</span>
-            <h2 class="titulo-principal-liquido">Análisis e Interpretación de <span>Datos</span></h2>
-        </div>
+    <div class="contenedor-presentacion">
 
-        <!-- LAYOUT ASIMÉTRICO DE DOS MITADES HORIZONTALES (50% / 50%) -->
-        <div class="layout-analisis">
-            
-            <!-- MITAD IZQUIERDA: GRÁFICO DE MÉTRICAS FIJO -->
-            <div class="contenedor-grafico-tecnologico">
-                <h3 class="titulo-grafico">Métricas Críticas Cruzadas (%)</h3>
-                
-                <div class="grafico-flex-eje">
-                    <!-- Barra 1 -->
-                    <div class="columna-barra-viva">
-                        <div class="valor-flotante-barra">68.4%</div>
-                        <div class="barra-relleno-grafica" style="--altura-objetivo: 68.4%;"></div>
-                        <div class="etiqueta-eje-x">Dificultad<br>Inquilinos</div>
+        <!-- CABECERA -->
+        <header class="cabecera-analisis">
+            <span class="tag-ficha">FASE 04 | FICHA: 3229944</span>
+            <h1 class="titulo-neon">ANÁLISIS INTERPRETACIÓN DE DATOS</h1>
+            <p class="subtitulo-neon">Muestra Real: 12 Inquilinos y 12 Propietarios de Garzón, Huila</p>
+        </header>
+
+        <main class="interfaz-dashboard">
+
+            <!-- BOTONES DE CONTROL -->
+            <!-- Cada botón tiene puntitos que indican en qué pantalla (1, 2, 3) está -->
+            <nav class="controles-3d">
+                <button class="btn-holograma activo" id="btn-inquilinos" onclick="gestionarClic('inquilinos', this)">
+                    <span class="glitch">PERSPECTIVA INQUILINOS</span>
+                    <div class="indicador-clicks">
+                        <span class="punto activo"></span>
+                        <span class="punto"></span>
+                        <span class="punto"></span>
                     </div>
-                    <!-- Barra 2 -->
-                    <div class="columna-barra-viva">
-                        <div class="valor-flotante-barra">75.0%</div>
-                        <div class="barra-relleno-grafica" style="--altura-objetivo: 75%;"></div>
-                        <div class="etiqueta-eje-x">Boca a Boca</div>
+                </button>
+                <button class="btn-holograma" id="btn-propietarios" onclick="gestionarClic('propietarios', this)">
+                    <span class="glitch">PERSPECTIVA PROPIETARIOS</span>
+                    <div class="indicador-clicks">
+                        <span class="punto activo"></span>
+                        <span class="punto"></span>
+                        <span class="punto"></span>
                     </div>
-                    <!-- Barra 3 -->
-                    <div class="columna-barra-viva">
-                        <div class="valor-flotante-barra">58.3%</div>
-                        <div class="barra-relleno-grafica" style="--altura-objetivo: 58.3%;"></div>
-                        <div class="etiqueta-eje-x">Desgaste Tiempo</div>
+                </button>
+                <button class="btn-holograma" id="btn-cruce" onclick="gestionarClic('cruce', this)">
+                    <span class="glitch">CRUCE INTEGRADO</span>
+                    <div class="indicador-clicks">
+                        <span class="punto activo"></span>
+                        <span class="punto"></span>
+                        <span class="punto"></span>
                     </div>
-                    <!-- Barra 4 -->
-                    <div class="columna-barra-viva">
-                        <div class="valor-flotante-barra">100%</div>
-                        <div class="barra-relleno-grafica destacada" style="--altura-objetivo: 100%;"></div>
-                        <div class="etiqueta-eje-x">Aceptación App/Web</div>
+                </button>
+            </nav>
+
+            <!-- ESCENARIO CON PERSPECTIVA 3D -->
+            <div class="escenario-3d">
+
+                <!-- ==============================
+                     SECCIÓN 1: INQUILINOS
+                ============================== -->
+                <div id="sec-inquilinos" class="bloque-seccion activo">
+
+                    <!-- Pantalla 1: Dificultad de Búsqueda -->
+                    <div class="sub-pantalla activo" data-index="0">
+                        <div class="grid-tarjetas">
+                            <div class="tarjeta-cristal">
+                                <h3>Dificultad de Búsqueda</h3>
+                                <div class="metrica-principal">3.42 <span>/ 5</span></div>
+                                <p class="conclusion-tarjeta">Ninguno considera el proceso MUY fácil. Más de la mitad lo califica como regular o difícil.</p>
+                            </div>
+                            <div class="tarjeta-cristal">
+                                <h3>¿Cómo perciben el proceso?</h3>
+                                <div class="contenedor-grafico">
+                                    <div class="barra-grupo">
+                                        <label>Difícil</label>
+                                        <div class="progreso-borde"><div class="barra-llenado azul" data-porcentaje="25.0%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Regular</label>
+                                        <div class="progreso-borde"><div class="barra-llenado morado" data-porcentaje="58.3%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Fácil</label>
+                                        <div class="progreso-borde"><div class="barra-llenado naranja" data-porcentaje="16.7%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- MITAD DERECHA: PANTALLA REVELABLE CON CONTROL POR BOTONES FIJOS -->
-            <div class="contenedor-scroll-vertical-hallazgos">
-                
-                <!-- Hallazgo 1 (Visible inicialmente) -->
-                <div class="tarjeta-hallazgo-clic activa-vertical" id="hallazgo-1">
-                    <h4 class="titulo-hallazgo">El Cruce Crítico</h4>
-                    <p>
-                        Mientras el <strong>68.4% de los inquilinos</strong> reporta una alta dificultad para contrastar ofertas objetivas, el mercado se estanca en métodos tradicionales obsoletos.
-                    </p>
-                </div>
+                    <!-- Pantalla 2: Medios de Información -->
+                    <div class="sub-pantalla" data-index="1">
+                        <div class="grid-tarjetas">
+                            <div class="tarjeta-cristal">
+                                <h3>Medios de Información Utilizados [Multiples respuestas]</h3>
+                                <div class="contenedor-grafico">
+                                    <div class="barra-grupo">
+                                        <label>Conocidos / Voz a voz</label>
+                                        <div class="progreso-borde"><div class="barra-llenado azul" data-porcentaje="58.3%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Amigos de la zona</label>
+                                        <div class="progreso-borde"><div class="barra-llenado azul" data-porcentaje="50.0%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Redes Sociales (Facebook/Otras)</label>
+                                        <div class="progreso-borde"><div class="barra-llenado azul" data-porcentaje="41.7%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tarjeta-cristal">
+                                <h3>Problemas al Buscar</h3>
+                                <div class="contenedor-grafico">
+                                    <div class="barra-grupo">
+                                        <label>Información desactualizada</label>
+                                        <div class="progreso-borde"><div class="barra-llenado cian" data-porcentaje="66.7%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Poca oferta disponible</label>
+                                        <div class="progreso-borde"><div class="barra-llenado cian" data-porcentaje="58.3%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Precios elevados</label>
+                                        <div class="progreso-borde"><div class="barra-llenado cian" data-porcentaje="50.0%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Hallazgo 2 -->
-                <div class="tarjeta-hallazgo-clic" id="hallazgo-2">
-                    <h4 class="titulo-hallazgo">Informalidad y Vacancia</h4>
-                    <p>
-                        El <strong>75% de los propietarios</strong> depende del letrero físico o conocidos. Esto causa que los inmuebles pasen meses vacíos por falta de canales con visibilidad unificada.
-                    </p>
-                </div>
+                    <!-- Pantalla 3: Disposición Tecnológica -->
+                    <div class="sub-pantalla" data-index="2">
+                        <div class="grid-tarjetas">
+                            <div class="tarjeta-cristal alertado centro-alerta">
+                                <h3>Disposición Tecnológica</h3>
+                                <div class="metrica-principal neon-verde">100%</div>
+                                <p class="conclusion-tarjeta">Total apertura de los inquilinos encuestados para migrar a una aplicación especializada y centralizada.</p>
+                            </div>
+                            <div class="tarjeta-cristal">
+                                <h3>Funcionalidades Más Exigidas</h3>
+                                <div class="contenedor-grafico">
+                                    <div class="barra-grupo">
+                                        <label>Verificación de propietarios</label>
+                                        <div class="progreso-borde"><div class="barra-llenado azul" data-porcentaje="100%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Chat interno seguro</label>
+                                        <div class="progreso-borde"><div class="barra-llenado morado" data-porcentaje="100%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Filtros por precio / zona</label>
+                                        <div class="progreso-borde"><div class="barra-llenado cian" data-porcentaje="91.7%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Hallazgo 3 -->
-                <div class="tarjeta-hallazgo-clic" id="hallazgo-3">
-                    <h4 class="titulo-hallazgo">Justificación del Software</h4>
-                    <p>
-                        Existe un <strong>100% de aceptación mutua</strong> para adoptar una plataforma digital. Esto respalda técnicamente el desarrollo del aplicativo para centralizar la oferta de Garzón.
-                    </p>
-                </div>
+                </div><!-- fin sec-inquilinos -->
 
-                <!-- CONTROLES VERTICALES FIJOS (Solución definitiva anti-bloqueos de mouse) -->
-                <div class="controles-direccionales-verticales">
-                    <button class="btn-direccion-v" onclick="subirTarjetaVertical()">▲</button>
-                    <button class="btn-direccion-v" onclick="bajarTarjetaVertical()">▼</button>
-                </div>
 
-            </div>
+                <!-- ==============================
+                     SECCIÓN 2: PROPIETARIOS
+                ============================== -->
+                <div id="sec-propietarios" class="bloque-seccion oculto">
 
-        </div>
+                    <!-- Pantalla 1: Dificultad para Hallar Clientes -->
+                    <div class="sub-pantalla activo" data-index="0">
+                        <div class="grid-tarjetas">
+                            <div class="tarjeta-cristal">
+                                <h3>Dificultad para Hallar Clientes</h3>
+                                <div class="metrica-principal">3.17 <span>/ 5</span></div>
+                                <p class="conclusion-tarjeta"> La mayoría de los propietarios siente que conseguir inquilinos en Garzón es un proceso regular o difícil.</p>
+                            </div>
+                            <div class="tarjeta-cristal">
+                                <h3>¿Como perciben el proceso ? </h3>
+                                <div class="contenedor-grafico">
+                                    <div class="barra-grupo">
+                                        <label>Facil y Muy facil</label>
+                                        <div class="progreso-borde"><div class="barra-llenado morado" data-porcentaje="25.0%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Regular</label>
+                                        <div class="progreso-borde"><div class="barra-llenado azul" data-porcentaje="41.7%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Dificil y Muy dificil</label>
+                                        <div class="progreso-borde"><div class="barra-llenado naranja" data-porcentaje="33.3%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- PIE DE PÁGINA INTERNO DEL MARCO -->
-        <div class="footer-estilizado">
-            <div>ADSO - SENA 2026</div>
-            <div style="font-weight: bold; color: var(--color-azul-acento);">Análisis de Resultados</div>
-        </div>
+                    <!-- Pantalla 2: Canales y Métodos -->
+                    <div class="sub-pantalla" data-index="1">
+                        <div class="grid-tarjetas">
+                            <div class="tarjeta-cristal">
+                                <h3>Canales y Métodos de contratacion</h3>
+                                <div class="contenedor-grafico">
+                                    <div class="barra-grupo">
+                                        <label>Voz a Voz Tradicional</label>
+                                        <div class="progreso-borde"><div class="barra-llenado morado" data-porcentaje="33.3%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Contratos Escritos Formales</label>
+                                        <div class="progreso-borde"><div class="barra-llenado morado" data-porcentaje="66.7%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tarjeta-cristal">
+                                <h3>Tipos de publicidad [Multiples respuestas]</h3>
+                                <div class="contenedor-grafico">
+                                    <div class="barra-grupo">
+                                        <label>Recomendaciones personales</label>
+                                        <div class="progreso-borde"><div class="barra-llenado azul" data-porcentaje="75.0%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Redes sociales</label>
+                                        <div class="progreso-borde"><div class="barra-llenado cian" data-porcentaje="58.3%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Letreros enla fachada</label>
+                                        <div class="progreso-borde"><div class="barra-llenado cian" data-porcentaje="41.7%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    </div>
+                    <!-- Pantalla 3: Interés en Herramientas -->
+                    <div class="sub-pantalla" data-index="2">
+                        <div class="grid-tarjetas">
+                            <div class="tarjeta-cristal alertado centro-alerta">
+                                <h3>Interés en Herramientas Digitales</h3>
+                                <div class="metrica-principal neon-verde">100%</div>
+                                <p class="conclusion-tarjeta">Todos los propietarios desean un chat interno corporativo y agenda automatizada de citas virtuales.</p>
+                            </div>
+                            <div class="tarjeta-cristal">
+                                <h3>Herramientas Prioritarias</h3>
+                                <div class="contenedor-grafico">
+                                    <div class="barra-grupo">
+                                        <label>Chat interno con inquilinos</label>
+                                        <div class="progreso-borde"><div class="barra-llenado morado" data-porcentaje="100%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Agenda de citas automatizada</label>
+                                        <div class="progreso-borde"><div class="barra-llenado azul" data-porcentaje="100%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Verificación de identidad inquilinos</label>
+                                        <div class="progreso-borde"><div class="barra-llenado cian" data-porcentaje="91.7%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- Motores JavaScript externos compartidos de control global -->
+                </div><!-- fin sec-propietarios -->
+
+
+                <!-- ==============================
+                     SECCIÓN 3: CRUCE INTEGRADO
+                ============================== -->
+                <div id="sec-cruce" class="bloque-seccion oculto">
+
+                    <!-- Pantalla 1: Sintonía de Requisitos -->
+                    <div class="sub-pantalla activo" data-index="0">
+                        <div class="grid-tarjetas una-col">
+                            <div class="tarjeta-cristal">
+                                <h3>Puntos de Sintonía Crítica (Requisitos de Software)</h3>
+                                <div class="contenedor-grafico grid-dos">
+                                    <div class="barra-grupo">
+                                        <label>Exigen Chat Interno en App</label>
+                                        <div class="progreso-borde"><div class="barra-llenado cian" data-porcentaje="100%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Inquilinos: Exigen Verificación de Datos</label>
+                                        <div class="progreso-borde"><div class="barra-llenado cian" data-porcentaje="100%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Propietarios: Dispuestos a Verificarse</label>
+                                        <div class="progreso-borde"><div class="barra-llenado cian" data-porcentaje="91.7%"></div></div>
+                                    </div>
+                                    <div class="barra-grupo">
+                                        <label>Transparencia total (Precios/Mapas)</label>
+                                        <div class="progreso-borde"><div class="barra-llenado cian" data-porcentaje="100%"></div></div>
+                                    </div>
+                                </div>
+                                <p class="nota-cruce">El cruce de variables demuestra viabilidad técnica absoluta: los miedos del inquilino encajan con las soluciones que acepta el propietario.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pantalla 2: Coincidencia en la Dificultad -->
+                    <div class="sub-pantalla" data-index="1">
+                        <div class="grid-tarjetas una-col">
+                            <div class="tarjeta-cristal">
+                                <h3>Resultados en el Índice de Dificultad</h3>
+                                <div class="comparativa-flex">
+                                    <div class="caja-comp">
+                                        <h4>INQUILINOS</h4>
+                                        <div class="num-comp">3.42</div>
+                                    </div>
+                                    <div class="caja-comp">
+                                        <h4>PROPIETARIOS</h4>
+                                        <div class="num-comp">3.17</div>
+                                    </div>
+                                </div>
+                                <p class="conclusion-tarjeta centralizado">Ambos extremos de la cadena sufren casi el mismo índice de frustración operativa en Garzón. La plataforma resuelve el problema en ambas direcciones simultáneamente.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pantalla 3: Conclusión -->
+                    <div class="sub-pantalla" data-index="2">
+                        <div class="grid-tarjetas una-col">
+                            <div class="tarjeta-cristal alertado centro-alerta">
+                                <h3>Conclusión Justificada</h3>
+                                <div class="metrica-principal neon-verde">100%</div>
+                                <p class="conclusion-tarjeta">Ambos bandos aprueban de forma unánime el desarrollo de la aplicación móvil del programa de formación ADSO - SENA 2026. La necesidad está validada en campo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- fin sec-cruce -->
+
+            </div><!-- fin escenario-3d -->
+        </main>
+    </div><!-- fin contenedor -->
     <script src="js/navegacion.js"></script>
-    <script src="js/particulas-nieve.js"></script>
-    <script src="js/burbujas-fondo.js"></script>
+    <script src="js/analisis.js"></script>
 
-    <script>
-        // MOTOR DE NAVEGACIÓN MANUAL VERTICAL (100% SEGURO Y COMPATIBLE)
-        let indiceActual = 1;
-        const totalTarjetas = 3;
-
-        function bajarTarjetaVertical() {
-            if (indiceActual < totalTarjetas) {
-                ejecutarCambioTransicion(indiceActual + 1);
-            }
-        }
-
-        function subirTarjetaVertical() {
-            if (indiceActual > 1) {
-                ejecutarCambioTransicion(indiceActual - 1);
-            }
-        }
-
-        function ejecutarCambioTransicion(nuevoIndice) {
-            // Desvanecer la tarjeta activa anterior aplicando la clase CSS
-            const tarjetaVieja = document.getElementById(`hallazgo-${indiceActual}`);
-            if (tarjetaVieja) {
-                tarjetaVieja.classList.remove('activa-vertical');
-            }
-
-            // Sincronización del retardo para permitir la disolución suave
-            setTimeout(() => {
-                indiceActual = nuevoIndice;
-                const tarjetaNueva = document.getElementById(`hallazgo-${indiceActual}`);
-                if (tarjetaNueva) {
-                    tarjetaNueva.classList.add('activa-vertical');
-                }
-            }, 100);
-        }
-
-        // Control opcional mediante las flechas de dirección física del teclado (↑ y ↓)
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                subirTarjetaVertical();
-            }
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                bajarTarjetaVertical();
-            }
-        });
-    </script>
 </body>
 </html>
